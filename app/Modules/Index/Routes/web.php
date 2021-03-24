@@ -1,7 +1,5 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,9 +11,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'Modules\Index\Http\Controllers\IndexController@index');
-
-
-Route::group(['prefix' => 'admin'], function () {
-    Voyager::routes();
+Route::prefix('index')->group(function() {
+    Route::get('/', 'IndexController@index');
 });
