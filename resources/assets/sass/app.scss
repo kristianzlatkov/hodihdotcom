@@ -2,10 +2,11 @@
 @import 'abstracts/variables';
 
 //Vendors
-@import "~bootstrap/scss/bootstrap.scss";
+@import "~bootstrap/scss/bootstrap";
+@import "~aos/src/sass/aos";
+@import "~animate.css/animate.css";
 
 //Themes
-@import "themes/animations";
 
 //Base
 @import 'base/reset';

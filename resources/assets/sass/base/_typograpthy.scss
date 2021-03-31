@@ -1,43 +1,59 @@
 body {
     font-family: $primary-font-family;
+    color: $primary-text-color;
 }
 
 h1 {
     font-size: 36px;
+    color: inherit;
 }
 
 h2 {
     font-size: 36px;
+    color: inherit;
 }
 
 h3 {
     font-size: 32px;
+    color: inherit;
 }
 
 h4 {
     font-size: 28px;
+    color: inherit;
 }
 
 h5 {
     font-size: 24px;
+    color: inherit;
 }
 
 h6 {
     font-size: 21px;
+    color: inherit;
 }
 
 p {
     font-size: 14px;
+    color: inherit;
+}
+
+a {
+    font-size: 14px;
+    color: inherit;
 }
 
 span {
     font-size: 14px;
+    color: inherit;
 }
 
 label {
     font-size: 16px;
+    color: inherit;
 }
 
 sub {
     font-size: 16px;
+    color: inherit;
 }

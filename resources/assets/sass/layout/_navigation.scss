@@ -1,0 +1,21 @@
+.navbar {
+    position: absolute;
+    top: 0;
+    z-index: $primary-z-index;
+    width: 100%;
+    height: 75px;
+    font-weight: bold;
+
+    .collapse {
+
+        .navbar-nav {
+            margin: auto;
+
+            .nav-item {
+                .nav-link {
+                    color: $secondary-text-color;
+                }
+            }
+        }
+    }
+}
