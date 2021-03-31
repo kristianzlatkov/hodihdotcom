@@ -17,6 +17,13 @@
         "nwidart/laravel-modules": "^8.2",
         "tcg/voyager": "^1.4"
     },
+    "extra": {
+        "laravel": {
+            "dont-discover": [
+                "laravel/dusk"
+            ]
+        }
+    },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",
         "laravel/sail": "^1.0.1",
@@ -39,7 +46,7 @@
             "App\\": "app/",
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/",
-            "Modules\\": "Modules/"
+            "Modules\\": "app/Modules/"
         }
     },
     "autoload-dev": {
