@@ -1,0 +1,28 @@
+.index-view {
+    height: auto;
+    background-color: $primary-background;
+    position: relative;
+
+    .welcome-bg {
+        opacity: .2;
+        height: 100vh;
+        min-height: 600px;
+        background-position: center center;
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+
+    .welcome-bg-logo {
+        height: 100%;
+        top: 0;
+        width: 70%;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        background-image: url(/assets/images/bg-logo.png);
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
+        animation: $secondary-transition fadeIn forwards;
+    }
+}

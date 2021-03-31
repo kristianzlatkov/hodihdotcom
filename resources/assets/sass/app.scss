@@ -3,13 +3,15 @@
 
 //Vendors
 
+//Themes
+@import "themes/animations";
+
 //Base
 @import 'base/reset';
 @import 'base/typograpthy';
 
 //Layout
 @import "layout/index";
-
-//Themes
+@import "layout/navigation";
 
 //Components

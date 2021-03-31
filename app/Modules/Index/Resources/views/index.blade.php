@@ -1,9 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>Hello World</h1>
-
-    <p>
-        This view is loaded from module: {!! config('index.name') !!}
-    </p>
+    <div class="index-view">
+        <div class="welcome-bg-logo"></div>
+        <div class="welcome-bg" style="background-image: url('{{asset('assets/images/bg.png')}}')"></div>
+    </div>
 @endsection
