@@ -1,8 +1,10 @@
 <nav class="navbar navbar-expand-lg navbar-light animate__animated animate__fadeIn">
     <div class="container-fluid">
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+        <button class="navbar-toggler hamburger hamburger--squeeze ml-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
                 aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+            <span class="hamburger-box">
+                <span class="hamburger-inner"></span>
+            </span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav">
@@ -26,7 +28,8 @@
                             >
                                 {{$item->title}}
                             </a>
-                            <ul class="dropdown-menu animate__animated animate__fadeIn" aria-labelledby="{{$item->id}}-nav-link">
+                            <ul class="dropdown-menu animate__animated animate__fadeIn"
+                                aria-labelledby="{{$item->id}}-nav-link">
                                 @foreach($item->children as $child)
                                     <a
                                         class="nav-link"

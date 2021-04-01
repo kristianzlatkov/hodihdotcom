@@ -7,7 +7,6 @@
     font-weight: bold;
 
     .collapse {
-
         .navbar-nav {
             margin: auto;
 
@@ -33,6 +32,27 @@
                     }
                 }
             }
+        }
+    }
+
+    .navbar-toggler {
+        font-size: 18px;
+        margin-left: auto;
+
+        .hamburger-box {
+            .hamburger-inner{
+                background-color: $secondary-text-color;
+
+                &:before, &:after {
+                    background-color: $secondary-text-color;
+                }
+            }
+        }
+
+        &:active, &:focus {
+            border: 0;
+            outline: none;
+            box-shadow: none;
         }
     }
 }

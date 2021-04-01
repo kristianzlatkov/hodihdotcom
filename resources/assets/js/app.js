@@ -15,3 +15,14 @@ import {lazyLoadingInit} from "./components/lazy_loading";
 $(document).ready(function() {
     lazyLoadingInit();
 })
+
+// Navigation
+$(document).ready(function() {
+   $('#navbarNavDropdown').on('show.bs.collapse', function() {
+       $(this).parent().find('.navbar-toggler').first().addClass('is-active')
+   });
+
+   $('#navbarNavDropdown').on('hide.bs.collapse', function() {
+       $(this).parent().find('.navbar-toggler').first().removeClass('is-active')
+   })
+});
