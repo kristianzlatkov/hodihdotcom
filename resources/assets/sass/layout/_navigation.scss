@@ -12,8 +12,25 @@
             margin: auto;
 
             .nav-item {
+                position: relative;
+
                 .nav-link {
                     color: $secondary-text-color;
+                }
+
+                .dropdown-menu {
+                    font-weight: normal;
+                    background-color: darken($secondary-background, 12);
+                    animation-duration: $primary-transition;
+
+                    .nav-link {
+                        color: $primary-text-color;
+                        transition: background-color $primary-transition ease;
+
+                        &:hover {
+                            background-color: darken($secondary-background, 18);
+                        }
+                    }
                 }
             }
         }

@@ -7,9 +7,36 @@
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav">
                 @foreach($items as $item)
-
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="{{$item->slug}}">{{$item->title}}</a>
+                        @if(!$item->children->isNotEmpty())
+                            <a
+                                class="nav-link"
+                                aria-current="page"
+                                href="{{$item->slug}}"
+                                title="{{$item->title}}"
+                            >{{$item->title}}</a>
+                        @else
+                            <a class="nav-link dropdown-toggle"
+                               href="{{$item->slug}}"
+                               id="{{$item->id}}-nav-link"
+                               title="{{$item->title}}"
+                               role="button"
+                               data-bs-toggle="dropdown"
+                               aria-expanded="false"
+                            >
+                                {{$item->title}}
+                            </a>
+                            <ul class="dropdown-menu animate__animated animate__fadeIn" aria-labelledby="{{$item->id}}-nav-link">
+                                @foreach($item->children as $child)
+                                    <a
+                                        class="nav-link"
+                                        aria-current="page"
+                                        href="{{$child->slug}}"
+                                        title="{{$child->title}}"
+                                    >{{$child->title}}</a>
+                                @endforeach
+                            </ul>
+                        @endif
                     </li>
                 @endforeach
                 {{--<li class="nav-item">
@@ -33,3 +60,4 @@
         </div>
     </div>
 </nav>
+
