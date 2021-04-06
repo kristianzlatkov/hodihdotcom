@@ -1,8 +1,5 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,10 +11,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
-Route::group(['prefix' => 'admin'], function () {
-    Voyager::routes();
+Route::prefix('pages')->group(function() {
+    Route::get('/', 'PagesController@index');
 });
-
-Route::get('/', 'Modules\Index\Http\Controllers\IndexController@index');
-Route::get('/attractions/{slug}','Modules\Pages\Http\Controllers\PagesController@showArticle');
