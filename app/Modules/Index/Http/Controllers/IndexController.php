@@ -43,7 +43,7 @@ class IndexController extends Controller
      */
     public function show($id)
     {
-        return view('index::show');
+        return view('index::'.$id);
     }
 
     /**

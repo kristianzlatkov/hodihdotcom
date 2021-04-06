@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,8 +15,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', 'Modules\Index\Http\Controllers\IndexController@index');
-
-
+Route::get('/attractions/{slug}','Modules\Pages\Http\Controllers\PagesController@showArticle');
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 });
+
+
