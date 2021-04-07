@@ -25,4 +25,11 @@
         background-repeat: no-repeat;
         animation: $secondary-transition fadeIn forwards;
     }
+
+    .logo {
+        position: absolute;
+        top: 95px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
 }
