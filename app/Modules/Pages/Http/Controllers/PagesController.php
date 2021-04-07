@@ -101,4 +101,19 @@ class PagesController extends Controller
         }
         return view('pages::newsArticle',['newsArticle'=>$newsArticle]);
     }
+
+    public function whatIsNewAllArticles(){
+        $newArticles=DB::table('posts')->where('featured','1')
+            ->where('category_id','2')->get();
+        dd($newArticles);
+        return view('pages::whatIsNew',['newArticles'=>$newArticles]);
+    }
+    public function showWhatIsNewArticle($slug){
+        $newArticle=DB::table('posts')->where('featured','1')
+            ->where('category_id','2')->first();
+        if(empty($newsArticle)){
+            abort(404);
+        }
+        return view('pages::whatIsNewArticle',['newsArticle'=>$newArticle]);
+    }
 }

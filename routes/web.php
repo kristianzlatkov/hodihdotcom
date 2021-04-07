@@ -28,6 +28,6 @@ Route::view('/contact','pages::contact');
 Route::get('/news','Modules\Pages\Http\Controllers\PagesController@showAllNews');
 Route::get('/news/{slug}','Modules\Pages\Http\Controllers\PagesController@showNewsArticle');
 Route::get('/whatisnew','Modules\Pages\Http\Controllers\PagesController@whatIsNewAllArticles');
-Route::get('/what/{slug}','Modules\Pages\Http\Controllers\PagesController@showNewsArticle');
+Route::get('/whatisnew/{slug}','Modules\Pages\Http\Controllers\PagesController@showNewsArticle');
 
 
