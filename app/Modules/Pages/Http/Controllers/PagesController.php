@@ -6,6 +6,7 @@ use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
+use function PHPUnit\Framework\assertObjectNotHasAttribute;
 
 class PagesController extends Controller
 {
@@ -80,12 +81,24 @@ class PagesController extends Controller
 
     public function showArticle($param){
 
-        $article = DB::table('posts')->where('slug','/attractions/'.$param)->get();
-        //dd($article);
-        //return \View::make('attractions', ['articleContent' => $article]);
+        $article = DB::table('posts')->where('slug','/attractions/'.$param)->first();
+        if(empty($article)){
+            abort(404);
+        }
          return view('pages::attractions', ['articleContent' => $article]);
-        //return view('article',$article);
-        //return view('pages::attractions');
     }
 
+    public function showAllNews(){
+        $news=DB::table('posts')->where('featured','1')->get();
+        return view('pages::news',['news'=>$news]);
+    }
+
+    public function showNewsArticle($slug){
+        $newsArticle=DB::table('posts')->where('featured','1')
+            ->where('slug',$slug)->first();
+        if(empty($newsArticle)){
+            abort(404);
+        }
+        return view('pages::newsArticle',['newsArticle'=>$newsArticle]);
+    }
 }

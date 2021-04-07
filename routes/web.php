@@ -24,3 +24,6 @@ Route::get('/attractions/{slug}','Modules\Pages\Http\Controllers\PagesController
 Route::view('/gallery','pages::gallery');
 Route::view('/history','pages::history');
 Route::view('/contact','pages::contact');
+Route::get('/news','Modules\Pages\Http\Controllers\PagesController@showAllNews');
+Route::get('/news/{slug}','Modules\Pages\Http\Controllers\PagesController@showNewsArticle');
+
