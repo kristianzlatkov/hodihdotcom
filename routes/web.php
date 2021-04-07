@@ -21,3 +21,6 @@ Route::group(['prefix' => 'admin'], function () {
 
 Route::get('/', 'Modules\Index\Http\Controllers\IndexController@index');
 Route::get('/attractions/{slug}','Modules\Pages\Http\Controllers\PagesController@showArticle');
+Route::view('/gallery','pages::gallery');
+Route::view('/history','pages::history');
+Route::view('/contact','pages::contact');
