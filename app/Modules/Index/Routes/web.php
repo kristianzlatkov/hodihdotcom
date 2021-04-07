@@ -13,6 +13,9 @@
 */
 
 
+
+Route::get('/', 'IndexController@index');
+Route::get('/index', 'IndexController@index');
 Route::prefix('index')->group(function() {
     Route::get('/', 'IndexController@index');
 });
