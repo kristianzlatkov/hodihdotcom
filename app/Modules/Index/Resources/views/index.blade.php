@@ -18,4 +18,11 @@
             </div>
         </div>
     </div>
+    <section class="main-section">
+        <header class="index-section-header"></header>
+            <div class="container-sm text-center">
+                <h2 class="section-title">@lang('front.attractions')</h2>
+            </div>
+        <footer class="index-section-footer"></footer>
+    </section>
 @endsection
