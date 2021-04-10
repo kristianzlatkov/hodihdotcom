@@ -9,5 +9,13 @@
                 <img class="img-fluid" src="{{asset('assets/images/logo.svg')}}" alt="@lang('front.site_title')"/>
             </a>
         </div>
+        <div class="welcome-title container-sm">
+            <div class="row">
+                <div class="col-12 col-lg-4">
+                    <h2 class="title">@lang('front.welcome_title')</h2>
+                    <sub>@lang('front.welcome_subtitle')</sub>
+                </div>
+            </div>
+        </div>
     </div>
 @endsection

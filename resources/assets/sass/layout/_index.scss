@@ -30,6 +30,46 @@
         position: absolute;
         top: 95px;
         left: 50%;
+        min-width: 300px;
         transform: translateX(-50%);
     }
+
+    .welcome-title {
+        position: absolute;
+        top: 260px;
+        left: 50%;
+        color: $secondary-text-color;
+        transform: translateX(-50%);
+        font-weight: 600;
+
+        .title {
+            color: $secondary-background;
+            position: relative;
+            padding-bottom: 8px;
+            margin-bottom: 14px;
+
+            &:before {
+                content: '';
+                position: absolute;
+                left: 0;
+                bottom: -8px;
+                border-radius: $primary-border-radius;
+                background-color: rgba($secondary-background, .2);
+                width: 100%;
+                height: 4px;
+            }
+
+            &:after {
+                content: '';
+                position: absolute;
+                left: 0;
+                bottom: -8px;
+                border-radius: $primary-border-radius;
+                background-color: $secondary-background;
+                width: 20%;
+                height: 4px;
+            }
+        }
+    }
 }
+
