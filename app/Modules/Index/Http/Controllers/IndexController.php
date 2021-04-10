@@ -5,6 +5,7 @@ namespace Modules\Index\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\DB;
 
 class IndexController extends Controller
 {
@@ -14,7 +15,8 @@ class IndexController extends Controller
      */
     public function index()
     {
-        return view('index::index');
+        $articles = DB::table('posts')->where('featured','0')->orderBy('id','desc')->take(4)->get();
+        return view('index::index',['articles'=>$articles]);
     }
 
     /**
