@@ -10,6 +10,7 @@ global.$ = jquery;
 global.jquery = jquery;
 require('bootstrap/dist/js/bootstrap');
 
+/*const Swipe = require('swipejs');*/
 import {lazyLoadingInit} from "./components/lazy_loading";
 
 // Lazy loading

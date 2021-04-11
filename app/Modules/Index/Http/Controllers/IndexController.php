@@ -19,7 +19,7 @@ class IndexController extends Controller
     {
         SEOMeta::setTitle('Home');
         $articles = DB::table('posts')->where('featured','0')->orderBy('id','desc')->take(4)->get();
-        dd($articles);
+
         return view('index::index',['articles'=>$articles]);
     }
 
