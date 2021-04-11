@@ -2,10 +2,12 @@
 
 namespace Modules\Index\Http\Controllers;
 
+use Artesaos\SEOTools\Facades\SEOMeta;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
+
 
 class IndexController extends Controller
 {
@@ -15,7 +17,9 @@ class IndexController extends Controller
      */
     public function index()
     {
+        SEOMeta::setTitle('Home');
         $articles = DB::table('posts')->where('featured','0')->orderBy('id','desc')->take(4)->get();
+        dd($articles);
         return view('index::index',['articles'=>$articles]);
     }
 

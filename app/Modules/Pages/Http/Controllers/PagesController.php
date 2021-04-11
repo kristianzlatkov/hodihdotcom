@@ -6,6 +6,7 @@ use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
+use phpDocumentor\Reflection\DocBlock\Tags\Reference\Url;
 use function PHPUnit\Framework\assertObjectNotHasAttribute;
 
 class PagesController extends Controller
@@ -78,21 +79,23 @@ class PagesController extends Controller
     {
         //
     }
+//Returns the attraction with the slug.
+    public function showAttraction($slug){
 
-    public function showArticle($param){
-
-        $article = DB::table('posts')->where('slug','/attractions/'.$param)->first();
+        $article = DB::table('posts')->where('slug','/attractions/'.$slug)->first();
         if(empty($article)){
             abort(404);
         }
          return view('pages::attractions', ['articleContent' => $article]);
     }
 
+//Shows all news in the /news blade.
     public function showAllNews(){
         $news=DB::table('posts')->where('featured','1')->get();
         return view('pages::news',['news'=>$news]);
     }
 
+    //Shows a single news article according to the slug provided in the route.
     public function showNewsArticle($slug){
         $newsArticle=DB::table('posts')->where('featured','1')
             ->where('slug',$slug)->first();
@@ -102,12 +105,15 @@ class PagesController extends Controller
         return view('pages::newsArticle',['newsArticle'=>$newsArticle]);
     }
 
+    //Returns all the articles in the whatIsNew blade.
     public function whatIsNewAllArticles(){
         $newArticles=DB::table('posts')->where('featured','1')
             ->where('category_id','2')->get();
         dd($newArticles);
         return view('pages::whatIsNew',['newArticles'=>$newArticles]);
     }
+
+    //Returns a single article according to the slug provided in the route.
     public function showWhatIsNewArticle($slug){
         $newArticle=DB::table('posts')->where('featured','1')
             ->where('category_id','2')->first();
@@ -115,5 +121,13 @@ class PagesController extends Controller
             abort(404);
         }
         return view('pages::whatIsNewArticle',['newsArticle'=>$newArticle]);
+    }
+    public function showHistoryPage(){
+    $page=DB::table('pages')->where('slug','/history')->first();
+    return view('pages::history',['page'=>$page]);
+    }
+    public function showAboutPage(){
+        $page=DB::table('pages')->where('slug','/about')->first();
+        return view('pages::about',['page'=>$page]);
     }
 }

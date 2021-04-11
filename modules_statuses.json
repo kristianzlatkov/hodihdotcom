@@ -1,4 +1,7 @@
 {
     "Index": true,
-    "Pages": true
+    "Pages": true,
+    "Gallery": true,
+    "Contact": true,
+    "History": true
 }
