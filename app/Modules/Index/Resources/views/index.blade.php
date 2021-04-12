@@ -20,9 +20,21 @@
     </div>
     <section class="main-section">
         <header class="index-section-header"></header>
-            <div class="container-sm text-center">
+        <div class="container-sm">
+            <div class="text-center">
                 <h2 class="section-title">@lang('front.attractions')</h2>
             </div>
+
+            <div class="row">
+                @if($articles->isNotEmpty())
+                    @foreach($articles as $article)
+                        <div class="col-12 col-lg-6">
+                            @include('components.article-list', ['article' => $article])
+                        </div>
+                    @endforeach
+                @endif
+            </div>
+        </div>
         <footer class="index-section-footer"></footer>
     </section>
 @endsection

@@ -10,6 +10,8 @@
 @import "~@fortawesome/fontawesome-free/scss/regular";
 @import "~@fortawesome/fontawesome-free/scss/brands";
 @import "~hamburgers/_sass/hamburgers/hamburgers";
+/*@import "~swipejs/docs/sass/style";*/
+@import "vendors/swiperjs";
 
 //Themes
 
@@ -22,3 +24,4 @@
 @import "layout/navigation";
 
 //Components
+@import "components/article-list";
