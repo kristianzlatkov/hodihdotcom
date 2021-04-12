@@ -25,15 +25,18 @@
                 <h2 class="section-title">@lang('front.attractions')</h2>
             </div>
 
-            <div class="row">
-                @if($articles->isNotEmpty())
-                    @foreach($articles as $article)
-                        <div class="col-12 col-lg-6">
-                            @include('components.article-list', ['article' => $article])
-                        </div>
-                    @endforeach
-                @endif
-            </div>
+            @if($articles->isNotEmpty())
+                <div class="swiper-container">
+                    <div class="swiper-wrapper">
+                        @foreach($articles as $article)
+                            <div class="swiper-slide">
+                                @include('components.article-list', ['article' => $article])
+                            </div>
+                        @endforeach
+                    </div>
+                    <div class="swiper-pagination"></div>
+                </div>
+            @endif
         </div>
         <footer class="index-section-footer"></footer>
     </section>

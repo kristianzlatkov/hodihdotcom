@@ -10,7 +10,7 @@ global.$ = jquery;
 global.jquery = jquery;
 require('bootstrap/dist/js/bootstrap');
 
-/*const Swipe = require('swipejs');*/
+const Swiper = require('swiper/swiper-bundle');
 import {lazyLoadingInit} from "./components/lazy_loading";
 
 // Lazy loading
@@ -61,3 +61,14 @@ $(document).ready(function () {
         });
     }
 });
+
+$(document).ready(function () {
+    var swiper = new Swiper('.swiper-container', {
+        slidesPerView: 2,
+        spaceBetween: 30,
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+        },
+    });
+})
