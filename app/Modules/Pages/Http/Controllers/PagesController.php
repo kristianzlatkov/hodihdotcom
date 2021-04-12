@@ -8,6 +8,12 @@ use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
 use phpDocumentor\Reflection\DocBlock\Tags\Reference\Url;
 use function PHPUnit\Framework\assertObjectNotHasAttribute;
+use Artesaos\SEOTools\Facades\SEOMeta;
+use Artesaos\SEOTools\Facades\OpenGraph;
+use Artesaos\SEOTools\Facades\TwitterCard;
+use Artesaos\SEOTools\Facades\JsonLd;
+use Artesaos\SEOTools\Facades\JsonLdMulti;
+use Artesaos\SEOTools\Facades\SEOTools;
 
 class PagesController extends Controller
 {
@@ -81,11 +87,11 @@ class PagesController extends Controller
     }
 //Returns the attraction with the slug.
     public function showAttraction($slug){
-
         $article = DB::table('posts')->where('slug','/attractions/'.$slug)->first();
         if(empty($article)){
             abort(404);
         }
+
          return view('pages::attractions', ['articleContent' => $article]);
     }
 
@@ -124,10 +130,10 @@ class PagesController extends Controller
     }
     public function showHistoryPage(){
     $page=DB::table('pages')->where('slug','/history')->first();
-    return view('pages::history',['page'=>$page]);
+    return view('pages::history',['historyPage'=>$page]);
     }
     public function showAboutPage(){
         $page=DB::table('pages')->where('slug','/about')->first();
-        return view('pages::about',['page'=>$page]);
+        return view('pages::about',['aboutPage'=>$page]);
     }
 }

@@ -1,15 +1,12 @@
 <?php
 
-namespace Modules\Index\Http\Controllers;
+namespace Modules\Gallery\Http\Controllers;
 
-use Artesaos\SEOTools\Facades\SEOMeta;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-use Illuminate\Support\Facades\DB;
 
-
-class IndexController extends Controller
+class GalleryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,9 +14,7 @@ class IndexController extends Controller
      */
     public function index()
     {
-        SEOMeta::setTitle('Home');
-        $articles = DB::table('posts')->where('featured','0')->orderBy('id','desc')->take(4)->get();
-        return view('index::index',['articles'=>$articles]);
+        return view('gallery::index');
     }
 
     /**
@@ -28,7 +23,7 @@ class IndexController extends Controller
      */
     public function create()
     {
-        return view('index::create');
+        return view('gallery::create');
     }
 
     /**
@@ -48,7 +43,7 @@ class IndexController extends Controller
      */
     public function show($id)
     {
-        return view('index::'.$id);
+        return view('gallery::show');
     }
 
     /**
@@ -58,7 +53,7 @@ class IndexController extends Controller
      */
     public function edit($id)
     {
-        return view('index::edit');
+        return view('gallery::edit');
     }
 
     /**
