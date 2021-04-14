@@ -63,12 +63,23 @@ $(document).ready(function () {
 });
 
 $(document).ready(function () {
-    var swiper = new Swiper('.swiper-container', {
-        slidesPerView: 2,
-        spaceBetween: 30,
-        pagination: {
-            el: '.swiper-pagination',
-            clickable: true,
-        },
-    });
+    if($(window).width() > 992) {
+        var swiper = new Swiper('.swiper-container', {
+            slidesPerView: 2,
+            spaceBetween: 30,
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+        });
+    } else {
+        var swiper = new Swiper('.swiper-container', {
+            slidesPerView: 1,
+            spaceBetween: 30,
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+        });
+    }
 })

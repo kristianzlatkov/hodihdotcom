@@ -1,13 +1,7 @@
-.swiper-container {
-    width: 100%;
-    height: 100%;
-}
-
 .swiper-slide {
     width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    height: 100%;
+    margin: 18px 0;
 }
 
 .swiper-pagination {
@@ -16,15 +10,15 @@
     justify-content: center;
 
     .swiper-pagination-bullet {
-        background-color: #333333;
-        height: 24px;
-        width: 24px;
+        background-color: rgba($tertiary-background, .6);
+        height: 15px;
+        width: 15px;
         margin-right: 8px;
         border-radius: 50%;
         display: block;
 
         &.swiper-pagination-bullet-active {
-            background-color: #ffffff;
+            background-color: rgba($secondary-background, .6);
         }
     }
 }

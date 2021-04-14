@@ -1,7 +1,6 @@
 .article-list-box {
     color: $secondary-text-color;
     border-bottom: 2px solid $secondary-text-color;
-    margin: 18px 0;
     padding: 16px 0;
     width: 100%;
 
@@ -15,7 +14,8 @@
         font-weight: bold;
     }
 
-    .article-content {
-
+    .article-list-box-content {
+        height: 4.5em;
+        overflow-y: hidden;
     }
 }

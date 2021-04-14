@@ -1,20 +1,22 @@
 <div class="article-list-box">
     <div class="row">
-        <div class="col-4">
-            <img
-                class="article-thumbnail"
-                src="https://i.pik.bg/news/937/660_0dd9ee09003bf6f29475ee7cadcbd8b1.jpg"
-                alt="Kristian"
-            />
+        <div class="col-12 col-xl-4">
+            <div class="text-center">
+                <img
+                    class="article-thumbnail"
+                    src="https://i.pik.bg/news/937/660_0dd9ee09003bf6f29475ee7cadcbd8b1.jpg"
+                    alt="Kristian"
+                />
+            </div>
         </div>
-        <div class="col-8">
-            <div class="h-100 d-flex flex-column">
+        <div class="col-12 col-xl-8">
+            <div class="h-100 d-flex flex-column my-2">
                 @if(!empty($article->title))
                     <h6 class="article-title">{{$article->title}}</h6>
                 @endif
                 @if(!empty($article->body))
-                    <div class="flex-grow-1">
-                        <p class="text-left">{{substr(strip_tags($article->body), 0, 250)}}...</p>
+                    <div class="article-list-box-content">
+                        <span class="text-left">{{substr(strip_tags($article->body), 0, 200)}}...</span>
                     </div>
                 @endif
                 @if(!empty($article->slug))
