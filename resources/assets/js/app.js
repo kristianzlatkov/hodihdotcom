@@ -63,6 +63,7 @@ $(document).ready(function () {
 });
 
 $(document).ready(function () {
+    // Articles
     if($(window).width() > 992) {
         var swiper = new Swiper('.swiper-container', {
             slidesPerView: 2,
@@ -75,6 +76,27 @@ $(document).ready(function () {
     } else {
         var swiper = new Swiper('.swiper-container', {
             slidesPerView: 1,
+            spaceBetween: 30,
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+        });
+    }
+
+    // Gallery
+    if($(window).width() > 992) {
+        var swiperGallery = new Swiper('.swiper-gallery-container', {
+            slidesPerView: 3,
+            spaceBetween: 30,
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+        });
+    } else {
+        var swiperGallery = new Swiper('.swiper-gallery-container', {
+            slidesPerView: 2,
             spaceBetween: 30,
             pagination: {
                 el: '.swiper-pagination',

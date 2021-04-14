@@ -4,6 +4,10 @@
     margin: 18px 0;
 }
 
+.swiper-gallery-container {
+    overflow-x: hidden;
+}
+
 .swiper-pagination {
     height: 24px;
     display: flex;
