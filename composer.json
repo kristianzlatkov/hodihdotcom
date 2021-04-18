@@ -16,6 +16,7 @@
         "laravel/framework": "^8.0",
         "laravel/tinker": "^2.5|dev-develop",
         "nwidart/laravel-modules": "^8.2",
+        "spatie/laravel-newsletter": "^4.9",
         "tcg/voyager": "^1.4"
     },
     "extra": {
@@ -39,7 +40,9 @@
     },
     "extra": {
         "laravel": {
-            "dont-discover": []
+            "dont-discover": [
+                "laravel/dusk"
+            ]
         }
     },
     "autoload": {

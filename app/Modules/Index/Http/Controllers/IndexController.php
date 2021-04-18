@@ -7,6 +7,7 @@ use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
+use Spatie\Newsletter\NewsletterFacade as Newsletter;
 
 
 class IndexController extends Controller
@@ -38,7 +39,17 @@ class IndexController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $notification = array();
+
+        if ( ! Newsletter::isSubscribed($request->email) ) {
+            Newsletter::subscribe($request->email,['FNAME'=>$request->name]);
+            $notification['alert-type'] = 'success';
+        } else {
+            $notification['alert-type'] = 'error';
+        }
+
+        return view('index::create');
+       // return redirect('/index#subscribeForm')->with($notification);
     }
 
     /**

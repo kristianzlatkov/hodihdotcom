@@ -91,7 +91,9 @@ class PagesController extends Controller
         if(empty($article)){
             abort(404);
         }
-
+        SEOMeta::setTitle($article->seo_title);
+//        SEOMeta::setDescription('This is my page description');
+//        SEOMeta::setCanonical('https://codecasts.com.br/lesson');
          return view('pages::attractions', ['articleContent' => $article]);
     }
 
