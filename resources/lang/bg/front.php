@@ -6,4 +6,8 @@
         'attractions' => 'Атракции',
         'gallery' => 'Галерия',
         'article_more' => 'Виж още',
+
+        'newsletter' => 'Абонамент',
+        'newsletter_message' => 'Абонирайте се за новини',
+        'newsletter_input_placeholder' => 'Имейл...',
     ];

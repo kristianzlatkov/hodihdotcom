@@ -4,8 +4,8 @@
             <div class="text-center">
                 <img
                     class="article-thumbnail"
-                    src="https://i.pik.bg/news/937/660_0dd9ee09003bf6f29475ee7cadcbd8b1.jpg"
-                    alt="Kristian"
+                    src="{{Voyager::image($article->image)}}"
+                    alt="{{$article->title}}"
                 />
             </div>
         </div>

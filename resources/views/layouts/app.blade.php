@@ -24,6 +24,7 @@
 </main>
 <footer>
     @yield('footer')
+    @include('layouts.footer')
 </footer>
 <script src="{{asset('assets/js/app.js')}}"></script>
 </body>
