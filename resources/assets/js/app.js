@@ -13,9 +13,18 @@ require('bootstrap/dist/js/bootstrap');
 const Swiper = require('swiper/swiper-bundle');
 import {lazyLoadingInit} from "./components/lazy_loading";
 
+require('lightgallery.js/src/js/lightgallery');
+
+require('lightgallery.js/src/js/lg-utils');
+
 // Lazy loading
 $(document).ready(function () {
     lazyLoadingInit();
+})
+
+// Light gallery init
+$(document).ready(function () {
+    lightGallery(document.getElementById('lightgallery'))
 })
 
 // Navigation

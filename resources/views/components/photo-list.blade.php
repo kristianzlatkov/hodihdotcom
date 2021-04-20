@@ -1,5 +1,5 @@
 @if(!empty($url))
-    <div class="photo-list-box">
+    <a class="photo-list-box" src="{{$url}}" @if(!empty($alt))title="{{$alt}}" @endif>
         <img src="{{$url}}" @if(!empty($alt))alt="{{$alt}}" @endif />
-    </div>
+    </a>
 @endif

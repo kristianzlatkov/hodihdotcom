@@ -72,17 +72,17 @@
         </div>
 
         <div class="swiper-gallery-container">
-            <div class="swiper-wrapper">
-                <div class="swiper-slide">
+            <div id="lightgallery" class="swiper-wrapper">
+                <div class="swiper-slide" data-src="{{asset('assets/images/bg.png')}}">
                     @include('components.photo-list', ['url' => asset('assets/images/bg.png')])
                 </div>
-                <div class="swiper-slide">
+                <div class="swiper-slide" data-src="{{asset('assets/images/bg.png')}}">
                     @include('components.photo-list', ['url' => asset('assets/images/bg.png')])
                 </div>
-                <div class="swiper-slide">
+                <div class="swiper-slide" data-src="{{asset('assets/images/bg.png')}}">
                     @include('components.photo-list', ['url' => asset('assets/images/bg.png')])
                 </div>
-                <div class="swiper-slide">
+                <div class="swiper-slide" data-src="{{asset('assets/images/bg.png')}}">
                     @include('components.photo-list', ['url' => asset('assets/images/bg.png')])
                 </div>
             </div>
