@@ -10,7 +10,7 @@
                 </div>
             </div>
             <div class="col-12 col-md-6 col-lg-4">
-                <form method="post" action="">
+                <form id="subscribe" method="post" action="">
                     <div class="form-group">
                         <label for="newsletterEmail">@lang('front.newsletter')</label><br>
                         <sub>@lang('front.newsletter_message')</sub><br>
