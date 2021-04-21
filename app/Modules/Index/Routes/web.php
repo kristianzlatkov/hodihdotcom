@@ -14,10 +14,8 @@
 
 
 
-Route::get('/', 'IndexController@index');
-Route::get('/index', 'IndexController@index');
-Route::post('/index', 'IndexController@store');
-Route::prefix('index')->group(function() {
+Route::prefix('/')->group(function() {
     Route::get('/', 'IndexController@index');
+    Route::post('/subscribe', 'IndexController@store')->name('subscribe');
 });
 
