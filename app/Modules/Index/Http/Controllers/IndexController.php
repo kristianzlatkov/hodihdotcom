@@ -39,17 +39,23 @@ class IndexController extends Controller
      */
     public function store(Request $request)
     {
+        //checks if the method is a get. If so, calling method index();
+        $method=Request::METHOD_POST;
+        if(!$method){
+            $this->index();
+        }
+
         $notification = array();
 
         if ( ! Newsletter::isSubscribed($request->email) ) {
-            Newsletter::subscribe($request->email,['FNAME'=>$request->name]);
+            Newsletter::subscribe($request->email);
             $notification['alert-type'] = 'success';
         } else {
             $notification['alert-type'] = 'error';
         }
 
-        return view('index::create');
-       // return redirect('/index#subscribeForm')->with($notification);
+       // return view('index::index');
+       return redirect('/#subscribe')->with($notification);
     }
 
     /**
