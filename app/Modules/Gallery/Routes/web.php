@@ -12,4 +12,4 @@
 */
 
 
-Route::view('/gallery','gallery::gallery');
+Route::get('/gallery','GalleryController@show');
