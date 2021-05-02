@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.app', ['type' => 'home'])
 
 @section('content')
     <div class="index-view">
