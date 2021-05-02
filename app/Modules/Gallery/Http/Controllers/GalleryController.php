@@ -45,6 +45,7 @@ class GalleryController extends Controller
      */
     public function show(Request $request)
     {
+
         $array = Storage::disk('public')->files('gallery');
 
         $total=count($array);

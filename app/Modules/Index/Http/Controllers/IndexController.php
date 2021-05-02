@@ -16,14 +16,18 @@ class IndexController extends Controller
      * Display a listing of the resource.
      * @return Renderable
      */
-    public function index(Request $request)
+    public function index()
     {
         SEOMeta::setTitle('Home');
-
+        //getting articles from the DB
         $articles = DB::table('posts')->where('featured','0')->orderBy('id','desc')->take(4)->get();
+        //getting gallery photos from the GalleryController
         $galleryController = new GalleryController();
-        $array=$galleryController->show($request);
-        return view('index::index',['articles'=>$articles,'images'=>$array]);
+        $myRequest = new \Illuminate\Http\Request();
+        $myRequest->setMethod('GET');
+        $myRequest->url('/gallery');
+        $images=$galleryController->show($myRequest);
+        return view('index::index',['articles'=>$articles,'images'=>$images->render()]);
 
     }
 
