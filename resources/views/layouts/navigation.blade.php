@@ -14,12 +14,12 @@
                             <a
                                 class="nav-link"
                                 aria-current="page"
-                                href="{{$item->slug}}"
+                                href="{{$item->url}}"
                                 title="{{$item->title}}"
                             >{{$item->title}}</a>
                         @else
                             <a class="nav-link dropdown-toggle"
-                               href="{{$item->slug}}"
+                               href="{{$item->url}}"
                                id="{{$item->id}}-nav-link"
                                title="{{$item->title}}"
                                role="button"
@@ -35,7 +35,7 @@
                                     <a
                                         class="nav-link"
                                         aria-current="page"
-                                        href="{{$child->slug}}"
+                                        href="{{$child->url}}"
                                         title="{{$child->title}}"
                                     >{{$child->title}}</a>
                                 @endforeach
