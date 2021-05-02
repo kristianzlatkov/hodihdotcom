@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
 use Spatie\Newsletter\NewsletterFacade as Newsletter;
-
+use Modules\Gallery\Http\Controllers\GalleryController;
 
 class IndexController extends Controller
 {
@@ -16,11 +16,15 @@ class IndexController extends Controller
      * Display a listing of the resource.
      * @return Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
         SEOMeta::setTitle('Home');
+
         $articles = DB::table('posts')->where('featured','0')->orderBy('id','desc')->take(4)->get();
-        return view('index::index',['articles'=>$articles]);
+        $galleryController = new GalleryController();
+        $array=$galleryController->show($request);
+        return view('index::index',['articles'=>$articles,'images'=>$array]);
+
     }
 
     /**
