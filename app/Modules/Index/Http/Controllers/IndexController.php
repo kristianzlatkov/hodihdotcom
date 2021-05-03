@@ -7,6 +7,7 @@ use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use Spatie\Newsletter\NewsletterFacade as Newsletter;
 use Modules\Gallery\Http\Controllers\GalleryController;
 
@@ -21,14 +22,11 @@ class IndexController extends Controller
         SEOMeta::setTitle('Home');
         //getting articles from the DB
         $articles = DB::table('posts')->where('featured','0')->orderBy('id','desc')->take(4)->get();
-        //getting gallery photos from the GalleryController
-        $galleryController = new GalleryController();
-        $myRequest = new \Illuminate\Http\Request();
-        $myRequest->setMethod('GET');
-        $myRequest->url('/gallery');
-        $images=$galleryController->show($myRequest);
-        return view('index::index',['articles'=>$articles,'images'=>$images->render()]);
-
+        //getting gallery photos from Gallery storage
+        $array = collect(Storage::disk('public')->files('gallery'));
+        $images=$array->take(5);
+        $images->all();
+        return view('index::index',['articles'=>$articles,'images'=>$images]);
     }
 
     /**
