@@ -73,18 +73,13 @@
 
         <div class="swiper-gallery-container">
             <div id="lightgallery" class="swiper-wrapper">
-                <div class="swiper-slide" data-src="{{asset('assets/images/bg.png')}}">
-                    @include('components.photo-list', ['url' => asset('assets/images/bg.png')])
-                </div>
-                <div class="swiper-slide" data-src="{{asset('assets/images/bg.png')}}">
-                    @include('components.photo-list', ['url' => asset('assets/images/bg.png')])
-                </div>
-                <div class="swiper-slide" data-src="{{asset('assets/images/bg.png')}}">
-                    @include('components.photo-list', ['url' => asset('assets/images/bg.png')])
-                </div>
-                <div class="swiper-slide" data-src="{{asset('assets/images/bg.png')}}">
-                    @include('components.photo-list', ['url' => asset('assets/images/bg.png')])
-                </div>
+                @if(!empty($images))
+                    @foreach($images as $image)
+                        <div class="swiper-slide" data-src="{{asset(\Illuminate\Support\Facades\Storage::url($image))}}">
+                            @include('components.photo-list', ['url' => $image])
+                        </div>
+                    @endforeach
+                @endif
             </div>
             <div class="swiper-pagination"></div>
         </div>
