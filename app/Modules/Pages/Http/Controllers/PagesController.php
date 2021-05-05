@@ -94,13 +94,13 @@ class PagesController extends Controller
         SEOMeta::setTitle($article->seo_title);
 //        SEOMeta::setDescription('This is my page description');
 //        SEOMeta::setCanonical('https://codecasts.com.br/lesson');
-         return view('pages::attractions', ['articleContent' => $article]);
+         return view('pages::blog.view', ['articleContent' => $article]);
     }
 
-//Shows all news in the /news blade.
+//Shows all news in the news
     public function showAllNews(){
         $news=DB::table('posts')->where('featured','1')->get();
-        return view('pages::news',['news'=>$news]);
+        return view('pages::blog.view',['news'=>$news]);
     }
 
     //Shows a single news article according to the slug provided in the route.
@@ -110,15 +110,15 @@ class PagesController extends Controller
         if(empty($newsArticle)){
             abort(404);
         }
-        return view('pages::newsArticle',['newsArticle'=>$newsArticle]);
+        return view('pages::blog.view',['newsArticle'=>$newsArticle]);
     }
 
-    //Returns all the articles in the whatIsNew blade.
+    //Returns all the articles
     public function whatIsNewAllArticles(){
         $newArticles=DB::table('posts')->where('featured','1')
             ->where('category_id','2')->get();
         dd($newArticles);
-        return view('pages::whatIsNew',['newArticles'=>$newArticles]);
+        return view('pages::blog.view',['newArticles'=>$newArticles]);
     }
 
     //Returns a single article according to the slug provided in the route.
@@ -128,14 +128,14 @@ class PagesController extends Controller
         if(empty($newsArticle)){
             abort(404);
         }
-        return view('pages::whatIsNewArticle',['newsArticle'=>$newArticle]);
+        return view('pages::blog.view',['newsArticle'=>$newArticle]);
     }
     public function showHistoryPage(){
     $page=DB::table('pages')->where('slug','/history')->first();
-    return view('pages::history',['historyPage'=>$page]);
+    return view('pages::page',['historyPage'=>$page]);
     }
     public function showAboutPage(){
         $page=DB::table('pages')->where('slug','/about')->first();
-        return view('pages::about',['aboutPage'=>$page]);
+        return view('pages::page',['aboutPage'=>$page]);
     }
 }

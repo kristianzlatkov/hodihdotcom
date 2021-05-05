@@ -22,7 +22,7 @@ class IndexController extends Controller
         SEOMeta::setTitle('Home');
         //getting articles from the DB
         $articles = DB::table('posts')->where('featured','0')->orderBy('id','desc')->take(4)->get();
-        //getting gallery photos from Gallery storage
+        //getting gallery photos from Gallery storage into a collection so we can use the "take" method
         $array = collect(Storage::disk('public')->files('gallery'));
         $images=$array->take(5);
         $images->all();
