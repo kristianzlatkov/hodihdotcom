@@ -1,0 +1,25 @@
+.main-pagination {
+    margin: 48px 0;
+
+    .pagination {
+        .page-item {
+            &.active {
+                .page-link {
+                    background-color: $primary-text-color;
+                    border-color: $primary-text-color;
+                    color: $secondary-background;
+                }
+            }
+
+            &.disabled {
+                .page-link {
+                    color: rgba($primary-text-color, .6);
+                }
+            }
+
+            .page-link {
+                color: $primary-text-color;
+            }
+        }
+    }
+}
