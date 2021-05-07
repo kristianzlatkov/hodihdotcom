@@ -101,7 +101,7 @@ class PagesController extends Controller
 //Shows all news in the news
     public function showAllNews(){
         $news=DB::table('posts')->where('featured','1')->get();
-        return view('pages::blog.view',['news'=>$news]);
+        return view('pages::blog.index',['news'=>$news]);
     }
 
     //Shows a single news article according to the slug provided in the route.
@@ -119,7 +119,7 @@ class PagesController extends Controller
         $newArticles=DB::table('posts')->where('featured','1')
             ->where('category_id','2')->get();
         dd($newArticles);
-        return view('pages::blog.view',['newArticles'=>$newArticles]);
+        return view('pages::blog.index',['newArticles'=>$newArticles]);
     }
 
     //Returns a single article according to the slug provided in the route.
