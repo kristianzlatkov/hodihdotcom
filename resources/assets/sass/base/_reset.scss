@@ -5,3 +5,21 @@ body {
     height: auto;
     background-color: $primary-background;
 }
+
+.base-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.main-header {
+    flex-shrink: 0;
+}
+
+.main-footer {
+    flex-shrink: 0;
+}
+
+.main-body {
+    flex: 1 0 auto;
+}
