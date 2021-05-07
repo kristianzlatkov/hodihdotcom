@@ -14,6 +14,7 @@ use Artesaos\SEOTools\Facades\TwitterCard;
 use Artesaos\SEOTools\Facades\JsonLd;
 use Artesaos\SEOTools\Facades\JsonLdMulti;
 use Artesaos\SEOTools\Facades\SEOTools;
+use function PHPUnit\Framework\isNull;
 
 class PagesController extends Controller
 {
@@ -130,12 +131,12 @@ class PagesController extends Controller
         }
         return view('pages::blog.view',['newsArticle'=>$newArticle]);
     }
-    public function showHistoryPage(){
-    $page=DB::table('pages')->where('slug','/history')->first();
-    return view('pages::page',['historyPage'=>$page]);
-    }
-    public function showAboutPage(){
-        $page=DB::table('pages')->where('slug','/about')->first();
-        return view('pages::page',['aboutPage'=>$page]);
+    //prints the static pages with prefix 'pages'
+    public function showStaticPage($slug){
+    $page=DB::table('pages')->where('slug','/'.$slug)->first();
+   if(null===$page){
+       abort('404');
+   }
+    return view('pages::page',['page'=>$page]);
     }
 }

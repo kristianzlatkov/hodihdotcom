@@ -11,14 +11,12 @@
 |
 */
 
-
+Route::prefix('/pages')->group(function() {
+    Route::get('/{slug}','PagesController@showStaticPage');
+});
 Route::get('/attractions/{slug}','PagesController@showAttraction');
 Route::get('/news','PagesController@showAllNews');
 Route::get('/news/{slug}','PagesController@showNewsArticle');
 Route::get('/whatisnew','PagesController@whatIsNewAllArticles');
 Route::get('/whatisnew/{slug}','PagesController@showNewsArticle');
-Route::prefix('pages')->group(function() {
-    Route::get('/', 'PagesController@index');
-});
-Route::get('/history','PagesController@showHistoryPage');
-Route::get('/about','PagesController@showAboutPage');
+
