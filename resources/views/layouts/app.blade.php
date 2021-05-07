@@ -15,18 +15,19 @@
     <link rel="stylesheet" href="{{asset('assets/css/app.css')}}">
 </head>
 <body>
+<div class="base-container">
+    <div class="nav-hodih main-header nav-{{$type}}">
+        {{\TCG\Voyager\Models\Menu::display('Nav', 'layouts.navigation')}}
+    </div>
 
-<div class="nav-hodih nav-{{$type}}">
-    {{\TCG\Voyager\Models\Menu::display('Nav', 'layouts.navigation')}}
+    <main class="main-body">
+        @yield('content')
+    </main>
+    <footer class="main-footer">
+        @yield('footer')
+        @include('layouts.footer')
+    </footer>
 </div>
-
-<main>
-    @yield('content')
-</main>
-<footer>
-    @yield('footer')
-    @include('layouts.footer')
-</footer>
 <script src="{{asset('assets/js/app.js')}}"></script>
 </body>
 </html>

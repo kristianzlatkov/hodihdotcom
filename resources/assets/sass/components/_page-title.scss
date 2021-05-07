@@ -1,0 +1,16 @@
+.page-title {
+    color: $secondary-background;
+    position: relative;
+    margin-bottom: 21px;
+
+    &:before {
+        content: '';
+        position: absolute;
+        bottom: -4px;
+        left: 0;
+        width: 100%;
+        max-width: 160px;
+        height: 1px;
+        background-color: $secondary-background;
+    }
+}

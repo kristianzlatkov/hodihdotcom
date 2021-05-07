@@ -118,7 +118,7 @@ class PagesController extends Controller
     public function whatIsNewAllArticles(){
         $newArticles=DB::table('posts')->where('featured','1')
             ->where('category_id','2')->get();
-        dd($newArticles);
+
         return view('pages::blog.view',['newArticles'=>$newArticles]);
     }
 
