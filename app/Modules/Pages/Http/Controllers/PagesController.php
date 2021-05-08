@@ -4,6 +4,7 @@ namespace Modules\Pages\Http\Controllers;
 
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\LengthAwarePaginator as Paginator;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
 use phpDocumentor\Reflection\DocBlock\Tags\Reference\Url;
@@ -87,7 +88,7 @@ class PagesController extends Controller
         //
     }
 //Returns the attraction with the slug.
-    public function showAttraction($slug){
+    public function returnSingleAttraction($slug){
         $article = DB::table('posts')->where('slug','/attractions/'.$slug)->first();
         if(empty($article)){
             abort(404);
@@ -98,14 +99,14 @@ class PagesController extends Controller
          return view('pages::blog.view', ['articleContent' => $article]);
     }
 
-//Shows all news in the news
-    public function showAllNews(){
-        $news=DB::table('posts')->where('featured','1')->get();
-        return view('pages::blog.index',['news'=>$news]);
-    }
+    //Return all attractions
+    public function returnAllAttractions(){
+        $attractions=DB::table('posts')->where('slug','LIKE','%'.'attractions'.'%')->get();
+        return view('pages::blog.index',['attractions'=>$attractions]);
 
+    }
     //Shows a single news article according to the slug provided in the route.
-    public function showNewsArticle($slug){
+    public function returnSingleNewsArticle($slug){
         $newsArticle=DB::table('posts')->where('featured','1')
             ->where('slug',$slug)->first();
         if(empty($newsArticle)){
@@ -114,8 +115,30 @@ class PagesController extends Controller
         return view('pages::blog.view',['newsArticle'=>$newsArticle]);
     }
 
-    //Returns all the articles
-    public function whatIsNewAllArticles(){
+//Shows all news in the news
+    public function returnAllNews(Request $request){
+        $news=DB::table('posts')->where('featured','1')->get();
+        $total=count($news);
+        $per_page = 10;
+        $current_page = $request->input("page") ?? 1;
+
+        $starting_point = ($current_page * $per_page) - $per_page;
+
+        //$array = $array->toArray();
+        $array = array_slice($news, $starting_point, $per_page, true);
+
+        $array = new Paginator($array, $total, $per_page, $current_page, [
+            'path' => $request->url(),
+            'query' => $request->query(),
+        ]);
+
+        return view('pages::blog.index',['news'=>$array]);
+    }
+
+
+
+    /*//Returns all the articles
+    public function return(){
         $newArticles=DB::table('posts')->where('featured','1')
             ->where('category_id','2')->get();
         dd($newArticles);
@@ -130,7 +153,7 @@ class PagesController extends Controller
             abort(404);
         }
         return view('pages::blog.view',['newsArticle'=>$newArticle]);
-    }
+    }*/
     //prints the static pages with prefix 'pages'
     public function showStaticPage($slug){
     $page=DB::table('pages')->where('slug','/'.$slug)->first();
