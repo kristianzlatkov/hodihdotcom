@@ -147,7 +147,7 @@ class PagesController extends Controller
         $current_page = $request->input("page") ?? 1;
 
         $starting_point = ($current_page * $per_page) - $per_page;
-        $news=$newArticles->toArray();
+        $newArticles=$newArticles->toArray();
         //$array = $array->toArray();
         $array = array_slice($newArticles, $starting_point, $per_page, true);
 
