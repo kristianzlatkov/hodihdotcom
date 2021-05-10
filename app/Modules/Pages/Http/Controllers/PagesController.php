@@ -156,7 +156,7 @@ class PagesController extends Controller
             'query' => $request->query(),
         ]);
 
-        return view('pages::blog.index',['articles'=>$newArticles]);
+        return view('pages::blog.index',['articles'=>$array]);
     }
 
    ///Returns a single article from the  articles on whatIsNew page(Ново) view according to the slug
