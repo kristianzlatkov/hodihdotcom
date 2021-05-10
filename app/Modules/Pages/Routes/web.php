@@ -14,10 +14,9 @@
 Route::prefix('/pages')->group(function() {
     Route::get('/{slug}','PagesController@showStaticPage');
 });
-Route::get('/blog/attractions/{slug}','PagesController@returnSingleAttraction');
-Route::get('/blog/news','PagesController@returnAllNews');
-Route::get('/blog/news/{slug}','PagesController@returnSingleNewsArticle');
-Route::get('/blog/attractions','PagesController@returnAllAttractions');
-//Route::get('/blog/news','PagesController@returnNewsAllArticles');
+Route::get('/attractions','PagesController@returnAllAttractions');
+Route::get('/attractions/{slug}','PagesController@returnSingleAttraction');
+Route::get('/news','PagesController@returnAllNews');
+Route::get('/news/{slug}','PagesController@returnSingleNewsArticle');
 //Route::get('/whatisnew/{slug}','PagesController@showNewsArticle');
 

@@ -123,7 +123,7 @@ class PagesController extends Controller
         $current_page = $request->input("page") ?? 1;
 
         $starting_point = ($current_page * $per_page) - $per_page;
-
+        $news=$news->toArray();
         //$array = $array->toArray();
         $array = array_slice($news, $starting_point, $per_page, true);
 
@@ -143,9 +143,9 @@ class PagesController extends Controller
             ->where('category_id','2')->get();
         dd($newArticles);
         return view('pages::blog.index',['newArticles'=>$newArticles]);
-    }
+    }*/
 
-    //Returns a single article according to the slug provided in the route.
+   /* //Returns a single article according to the slug provided in the route.
     public function showWhatIsNewArticle($slug){
         $newArticle=DB::table('posts')->where('featured','1')
             ->where('category_id','2')->first();
