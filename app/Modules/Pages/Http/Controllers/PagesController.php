@@ -138,9 +138,23 @@ class PagesController extends Controller
 
 
     //Returns all the articles on whatIsNew page(Ново)
-    public function returnAllWhatIsNewArticles(){
+    public function returnAllWhatIsNewArticles(Request $request){
         $newArticles=DB::table('posts')->where('featured','1')
             ->where('category_id','2')->get();
+
+        $total=count($newArticles);
+        $per_page = 10;
+        $current_page = $request->input("page") ?? 1;
+
+        $starting_point = ($current_page * $per_page) - $per_page;
+        $news=$newArticles->toArray();
+        //$array = $array->toArray();
+        $array = array_slice($newArticles, $starting_point, $per_page, true);
+
+        $array = new Paginator($array, $total, $per_page, $current_page, [
+            'path' => $request->url(),
+            'query' => $request->query(),
+        ]);
 
         return view('pages::blog.index',['articles'=>$newArticles]);
     }
