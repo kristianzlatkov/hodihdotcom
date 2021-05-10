@@ -137,23 +137,23 @@ class PagesController extends Controller
 
 
 
-    /*//Returns all the articles
-    public function return(){
+    //Returns all the articles on whatIsNew page(Ново)
+    public function returnAllWhatIsNewArticles(){
         $newArticles=DB::table('posts')->where('featured','1')
             ->where('category_id','2')->get();
         dd($newArticles);
         return view('pages::blog.index',['newArticles'=>$newArticles]);
-    }*/
+    }
 
-   /* //Returns a single article according to the slug provided in the route.
-    public function showWhatIsNewArticle($slug){
+   ///Returns a single article from the  articles on whatIsNew page(Ново) view according to the slug
+    public function returnSingleWhatIsNewArticle($slug){
         $newArticle=DB::table('posts')->where('featured','1')
             ->where('category_id','2')->first();
         if(empty($newsArticle)){
             abort(404);
         }
         return view('pages::blog.view',['newsArticle'=>$newArticle]);
-    }*/
+    }
     //prints the static pages with prefix 'pages'
     public function showStaticPage($slug){
     $page=DB::table('pages')->where('slug','/'.$slug)->first();

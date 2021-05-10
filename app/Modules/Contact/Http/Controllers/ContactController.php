@@ -43,7 +43,7 @@ class ContactController extends Controller
      */
     public function show()
     {
-        return view('contact::show');
+        return view('contact::contact');
     }
 
     /**

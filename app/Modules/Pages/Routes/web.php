@@ -14,9 +14,10 @@
 Route::prefix('/pages')->group(function() {
     Route::get('/{slug}','PagesController@showStaticPage');
 });
-Route::get('/attractions','PagesController@returnAllAttractions');
-Route::get('/attractions/{slug}','PagesController@returnSingleAttraction');
-Route::get('/news','PagesController@returnAllNews');
-Route::get('/news/{slug}','PagesController@returnSingleNewsArticle');
-//Route::get('/whatisnew/{slug}','PagesController@showNewsArticle');
+Route::get('/attractions','PagesController@returnAllAttractions');// Атракции
+Route::get('/attractions/{slug}','PagesController@returnSingleAttraction');// Статия за атракция
+Route::get('/news','PagesController@returnAllNews');// Новини
+Route::get('/news/{slug}','PagesController@returnSingleNewsArticle');// Статия за новина
+Route::get('/new','PagesController@returnAllWhatIsNewArticles');// Ново
+Route::get('/new/{slug}','PagesController@returnSingleWhatIsNewArticle');// Статия от страница 'Ново'
 
