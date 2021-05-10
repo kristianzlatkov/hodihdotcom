@@ -132,7 +132,7 @@ class PagesController extends Controller
             'query' => $request->query(),
         ]);
 
-        return view('pages::blog.index',['news'=>$array]);
+        return view('pages::blog.index',['articles'=>$array]);
     }
 
 
@@ -141,8 +141,8 @@ class PagesController extends Controller
     public function returnAllWhatIsNewArticles(){
         $newArticles=DB::table('posts')->where('featured','1')
             ->where('category_id','2')->get();
-        dd($newArticles);
-        return view('pages::blog.index',['newArticles'=>$newArticles]);
+
+        return view('pages::blog.index',['articles'=>$newArticles]);
     }
 
    ///Returns a single article from the  articles on whatIsNew page(Ново) view according to the slug

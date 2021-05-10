@@ -6,15 +6,15 @@
             @lang('pages::front.news_page_title')
         </h1>
 
-        @if(!empty($news))
+        @if(!empty($articles))
             <div class="row">
-                @foreach($news as $article)
+                @foreach($articles as $article)
                     <div class="col-12 col-md-6">
                         @include('components.article-list', ['article' => $article])
                     </div>
                 @endforeach
             </div>
         @endif
-        {{$news->links('components.pagination')}}
+        {{$articles->links('components.pagination')}}
     </div>
 @endsection
