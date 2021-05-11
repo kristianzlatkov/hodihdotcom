@@ -89,7 +89,7 @@ class PagesController extends Controller
     }
 
 
-    //Shows all news in the news
+    //Return all articles from Attractions/News/New
     public function returnAllArticles(Request $request){
         $typeOfPageToLoad='';
         if($request->getPathInfo()==='/news'){
