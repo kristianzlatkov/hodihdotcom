@@ -14,16 +14,16 @@
 Route::prefix('/pages')->group(function() {
     Route::get('/{slug}','PagesController@showStaticPage');
 });
-Route::get('/attractions','PagesController@returnAllAttractions');// Атракции
-Route::get('/attractions/{slug}','PagesController@returnSingleAttraction');// Статия за атракция
+Route::get('/attractions','PagesController@returnAllArticles');// Атракции
+Route::get('/attractions/{slug}','PagesController@returnSingleArticle');// Статия за атракция
 /*Route::get('/news','PagesController@returnAllNews');// Новини
 Route::get('/news/{slug}','PagesController@returnSingleNewsArticle');// Статия за новина*/
 
 Route::prefix('news')->as('news.')->group(function() {
-    Route::get('/','PagesController@returnAllNews')->name('index');
-    Route::get('/{slug}', 'PagesController@returnSingleNewsArticle')->name('view');
+    Route::get('/','PagesController@returnAllArticles')->name('index');//Новини
+    Route::get('/{slug}', 'PagesController@returnSingleArticle')->name('view');// Статия за новина
 });
 
-Route::get('/new','PagesController@returnAllWhatIsNewArticles');// Ново
-Route::get('/new/{slug}','PagesController@returnSingleWhatIsNewArticle');// Статия от страница 'Ново'
+Route::get('/new','PagesController@returnAllArticles');// Ново
+Route::get('/new/{slug}','PagesController@returnSingleArticle');// Статия от страница 'Ново'
 

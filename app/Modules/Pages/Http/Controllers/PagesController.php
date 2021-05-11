@@ -87,43 +87,23 @@ class PagesController extends Controller
     {
         //
     }
-//Returns the attraction with the slug.
-    public function returnSingleAttraction($slug){
-        $article = DB::table('posts')->where('slug','/attractions/'.$slug)->first();
-        if(empty($article)){
-            abort(404);
+
+
+    //Shows all news in the news
+    public function returnAllArticles(Request $request){
+        $typeOfPageToLoad='';
+        if($request->getPathInfo()==='/news'){
+            $typeOfPageToLoad='Новина';
         }
-        SEOMeta::setTitle($article->seo_title);
-//        SEOMeta::setDescription('This is my page description');
-//        SEOMeta::setCanonical('https://codecasts.com.br/lesson');
-         return view('pages::blog.view', ['articleContent' => $article]);
-    }
-
-    //Return all attractions
-    public function returnAllAttractions(){
-        $attractions=DB::table('posts')
-            ->join('categories','category_id','=','category_id')
-            ->where('categories.name','=','Атракция')
-            ->get();
-
-        return view('pages::blog.index',['attractions'=>$attractions]);
-
-    }
-    //Shows a single news article according to the slug provided in the route.
-    public function returnSingleNewsArticle($slug){
-        $newsArticle=DB::table('posts')->where('featured','1')
-            ->where('slug',$slug)->first();
-        if(empty($newsArticle)){
-            abort(404);
+        else if($request->getPathInfo()==='/new'){
+            $typeOfPageToLoad='Ново';
         }
-        return view('pages::blog.view',['newsArticle'=>$newsArticle]);
-    }
-
-//Shows all news in the news
-    public function returnAllNews(Request $request){
+        else if($request->getPathInfo()==='/attraction'){
+            $typeOfPageToLoad='Атракция';
+        }
         $news=DB::table('posts')
             ->join('categories','posts.category_id','=','categories.id')
-            ->where('categories.name','=','Новина')
+            ->where('categories.name','=',$typeOfPageToLoad)
             ->get();
         $total=count($news);
         $per_page = 10;
@@ -142,40 +122,29 @@ class PagesController extends Controller
         return view('pages::blog.index',['articles'=>$array]);
     }
 
-
-
-    //Returns all the articles on whatIsNew page(Ново)
-    public function returnAllWhatIsNewArticles(Request $request){
-        $newArticles=DB::table('posts')
+   //Returns a single article according to the slug
+    public function returnSingleArticle($slug,Request $request){
+        $typeOfArticle='';
+        if($request->getPathInfo()==='/news/'.$slug){
+            $typeOfArticle='Новина';
+        }
+        else if($request->getPathInfo()==='/new/'.$slug){
+            $typeOfArticle='Ново';
+        }
+        else if($request->getPathInfo()==='/attractions/'.$slug){
+            $typeOfArticle='Атракция';
+        }
+        $article=DB::table('posts')
             ->join('categories','posts.category_id','=','categories.id')
-            ->where('categories.name','=','Ново')
-            ->get();
-        $total=count($newArticles);
-        $per_page = 10;
-        $current_page = $request->input("page") ?? 1;
-
-        $starting_point = ($current_page * $per_page) - $per_page;
-        $newArticles=$newArticles->toArray();
-        //$array = $array->toArray();
-        $array = array_slice($newArticles, $starting_point, $per_page, true);
-
-        $array = new Paginator($array, $total, $per_page, $current_page, [
-            'path' => $request->url(),
-            'query' => $request->query(),
-        ]);
-
-        return view('pages::blog.index',['articles'=>$array]);
-    }
-
-   ///Returns a single article from the  articles on whatIsNew page(Ново) view according to the slug
-    public function returnSingleWhatIsNewArticle($slug){
-        $newArticle=DB::table('posts')->where('featured','1')
-            ->where('category_id','2')->first();
-        if(empty($newsArticle)){
+            ->where('categories.name','=',$typeOfArticle)
+            ->where('posts.slug',$slug)
+            ->first();
+        if(empty($article)){
             abort(404);
         }
-        return view('pages::blog.view',['newsArticle'=>$newArticle]);
+        return view('pages::blog.view',['newsArticle'=>$article]);
     }
+
     //prints the static pages with prefix 'pages'
     public function showStaticPage($slug){
     $page=DB::table('pages')->where('slug','/'.$slug)->first();

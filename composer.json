@@ -10,6 +10,7 @@
     "require": {
         "php": "^7.4|^8.0",
         "artesaos/seotools": "^0.20.0",
+        "davejamesmiller/laravel-breadcrumbs": "5.x",
         "fideloper/proxy": "^4.4.1",
         "fruitcake/laravel-cors": "^2.0.3",
         "guzzlehttp/guzzle": "^7.0.1",
