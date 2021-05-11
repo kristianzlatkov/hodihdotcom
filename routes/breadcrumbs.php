@@ -1,4 +1,9 @@
 <?php
+// Home
+Breadcrumbs::for('home', function ($trail) {
+$trail->push('Home', route('/'));
+});
+
 // Home > About
 Breadcrumbs::for('about', function ($trail) {
 $trail->parent('home');
