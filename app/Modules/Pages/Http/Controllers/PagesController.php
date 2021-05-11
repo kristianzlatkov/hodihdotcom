@@ -101,7 +101,11 @@ class PagesController extends Controller
 
     //Return all attractions
     public function returnAllAttractions(){
-        $attractions=DB::table('posts')->where('slug','LIKE','%'.'attractions'.'%')->get();
+        $attractions=DB::table('posts')
+            ->join('categories','category_id','=','category_id')
+            ->where('categories.name','=','Атракция')
+            ->get();
+
         return view('pages::blog.index',['attractions'=>$attractions]);
 
     }
@@ -117,7 +121,10 @@ class PagesController extends Controller
 
 //Shows all news in the news
     public function returnAllNews(Request $request){
-        $news=DB::table('posts')->where('featured','1')->get();
+        $news=DB::table('posts')
+            ->join('categories','posts.category_id','=','categories.id')
+            ->where('categories.name','=','Новина')
+            ->get();
         $total=count($news);
         $per_page = 10;
         $current_page = $request->input("page") ?? 1;
@@ -139,9 +146,10 @@ class PagesController extends Controller
 
     //Returns all the articles on whatIsNew page(Ново)
     public function returnAllWhatIsNewArticles(Request $request){
-        $newArticles=DB::table('posts')->where('featured','1')
-            ->where('category_id','2')->get();
-
+        $newArticles=DB::table('posts')
+            ->join('categories','posts.category_id','=','categories.id')
+            ->where('categories.name','=','Ново')
+            ->get();
         $total=count($newArticles);
         $per_page = 10;
         $current_page = $request->input("page") ?? 1;
