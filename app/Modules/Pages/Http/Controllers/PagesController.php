@@ -2,6 +2,7 @@
 
 namespace Modules\Pages\Http\Controllers;
 
+use DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator as Paginator;
@@ -93,32 +94,37 @@ class PagesController extends Controller
     public function returnAllArticles(Request $request){
         $typeOfPageToLoad='';
         if($request->getPathInfo()==='/news'){
-            $typeOfPageToLoad='Новина';
+            $typeOfPageToLoad='Новини';
         }
         else if($request->getPathInfo()==='/new'){
             $typeOfPageToLoad='Ново';
         }
         else if($request->getPathInfo()==='/attraction'){
-            $typeOfPageToLoad='Атракция';
+            $typeOfPageToLoad='Атракции';
         }
-        $news=DB::table('posts')
+        $data=DB::table('posts')
             ->join('categories','posts.category_id','=','categories.id')
             ->where('categories.name','=',$typeOfPageToLoad)
             ->get();
-        $total=count($news);
+        $total=count($data);
         $per_page = 10;
         $current_page = $request->input("page") ?? 1;
-
         $starting_point = ($current_page * $per_page) - $per_page;
-        $news=$news->toArray();
+        $data=$data->toArray();
         //$array = $array->toArray();
-        $array = array_slice($news, $starting_point, $per_page, true);
+        $array = array_slice($data, $starting_point, $per_page, true);
 
         $array = new Paginator($array, $total, $per_page, $current_page, [
             'path' => $request->url(),
             'query' => $request->query(),
         ]);
-
+        //Breadcrumbs
+         $breadcrumbsPath=substr($request->getPathInfo(),1);// variable to be put as a path
+         $blogName= ucwords($breadcrumbsPath);//variable to use as a name to push(makes the first letter capital)
+        Breadcrumbs::for($breadcrumbsPath, function ($trail) use ($breadcrumbsPath,$blogName) {
+            $trail->parent('home');
+            $trail->push($blogName, route($breadcrumbsPath));
+        });
         return view('pages::blog.index',['articles'=>$array]);
     }
 
@@ -126,22 +132,30 @@ class PagesController extends Controller
     public function returnSingleArticle($slug,Request $request){
         $typeOfArticle='';
         if($request->getPathInfo()==='/news/'.$slug){
-            $typeOfArticle='Новина';
+            $typeOfArticle='Новини';
         }
         else if($request->getPathInfo()==='/new/'.$slug){
             $typeOfArticle='Ново';
         }
         else if($request->getPathInfo()==='/attractions/'.$slug){
-            $typeOfArticle='Атракция';
+            $typeOfArticle='Атракции';
         }
         $article=DB::table('posts')
             ->join('categories','posts.category_id','=','categories.id')
             ->where('categories.name','=',$typeOfArticle)
-            ->where('posts.slug',$slug)
+            ->where('posts.slug','LIKE','%'.$slug.'%')
             ->first();
         if(empty($article)){
             abort(404);
         }
+
+        //Breadcrumbs
+        $breadcrumbsPath=substr($request->getPathInfo(),1);// variable to be put as a path
+        $blogName= ucwords($breadcrumbsPath);//variable to use as a name to push(makes the first letter capital)
+        Breadcrumbs::for('post', function ($trail, $post) use ($blogName, $breadcrumbsPath) {
+            $trail->parent($breadcrumbsPath, $post->category);
+            $trail->push($blogName, route('post', $post->id));
+        });
         return view('pages::blog.view',['newsArticle'=>$article]);
     }
 
@@ -151,6 +165,13 @@ class PagesController extends Controller
    if(null===$page){
        abort('404');
    }
+   //Breadcrumbs
+    $breadcrumbsPath=substr($slug,1);// variable to be put as a path
+    $blogName= ucwords($breadcrumbsPath);//variable to use as a name to push(makes the first letter capital)
+    Breadcrumbs::for($slug, function ($trail) use ($slug, $blogName) {
+    $trail->parent('home');
+    $trail->push($blogName, route('/pages'.$slug));
+    });
     return view('pages::page',['page'=>$page]);
     }
 }
