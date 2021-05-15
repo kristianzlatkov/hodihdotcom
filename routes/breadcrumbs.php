@@ -1,7 +1,7 @@
 <?php
 // Home
 Breadcrumbs::for('home', function ($trail) {
-$trail->push('Home', route('/'));
+$trail->push('Home', route('index'));
 });
 
 //// Home > About

@@ -1,0 +1,21 @@
+.breadcrumb {
+    .breadcrumb-item {
+        color: $tertiary-text-color;
+
+        &:hover {
+            a {
+                color: $secondary-text-color;
+            }
+        }
+
+        &.active {
+            color: $secondary-text-color;
+        }
+
+        a {
+            font-size: 16px;
+            text-decoration: none;
+            transition: color $primary-transition ease;
+        }
+    }
+}
