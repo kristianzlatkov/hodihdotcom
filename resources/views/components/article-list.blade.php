@@ -21,7 +21,7 @@
                 @endif
                 @if(!empty($article->slug))
                     <div class="text-end">
-                        <a href="{{route('news.view', $article->slug)}}" @if(!empty($article->title)) title="{{$article->title}}" @endif>@lang('front.article_more')</a>
+                        <a href="{{route('blog.article', $article->slug)}}" @if(!empty($article->title)) title="{{$article->title}}" @endif>@lang('front.article_more')</a>
                     </div>
                 @endif
             </div>

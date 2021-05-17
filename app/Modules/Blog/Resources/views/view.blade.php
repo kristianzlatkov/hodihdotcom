@@ -2,10 +2,11 @@
 
 @section('content')
     <div class="container-sm">
-        <h1 class="page-title">{{$newsArticle->title}}</h1>
+        {{ Breadcrumbs::render('post') }}
+        <h1 class="page-title">{{$article->title}}</h1>
 
         <div>
-            {!! $newsArticle->body !!}
+            {!! $article->body !!}
         </div>
     </div>
 @endsection

@@ -3,5 +3,6 @@
     "Pages": true,
     "Gallery": true,
     "Contact": true,
-    "History": true
+    "History": true,
+    "Blog": true
 }
