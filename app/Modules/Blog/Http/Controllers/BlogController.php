@@ -8,7 +8,9 @@ use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator as Paginator;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\URL;
 use Modules\Blog\Entities\Post;
+use Artesaos\SEOTools\Facades\SEOTools;
 
 class BlogController extends Controller
 {
@@ -81,7 +83,7 @@ class BlogController extends Controller
         //
     }
     //Return all articles from Attractions/News/New
-    public function returnAllArticles($categorySlug=null, Request $request)
+    public function returnAllArticles($categorySlug='attractions', Request $request)
     {
         $data=Post::all()
             ->where('category.slug','=',$categorySlug)
@@ -110,11 +112,19 @@ class BlogController extends Controller
     }
 
     //Returns a single article according to the slug
-    public function returnSingleArticle($categorySlug, $articleSlug)
+    public function returnSingleArticle($categorySlug=null, $articleSlug)
     {
         $article=Post::with(['category'])
             ->where('slug',$articleSlug)
             ->first();
+        SEOTools::setTitle($article->meta_title);
+        SEOTools::setDescription($article->meta_description);
+        SEOTools::metatags()->addMeta('keywords', $article->meta_keywords);
+        SEOTools::opengraph();
+        SEOTools::opengraph()->setUrl(URL::current());
+        SEOTools::opengraph()->setSiteName($article->meta_title);
+        //SEO::opengraph()->addImage(asset('assets/images/content/fb-share-img.jpg'), ['height' => 1200, 'width' => 630]);
+        SEOTools::setCanonical(URL::current());
         //Breadcrumbs
         Breadcrumbs::register('post', function ($breadcrumbs) use ($article) {
             $breadcrumbs->push(__('index::front.page_title'), url('/'));

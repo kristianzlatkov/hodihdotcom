@@ -1,6 +1,7 @@
 <div class="article-list-box">
     <div class="row">
         <div class="col-12 col-xl-4">
+            @if(!empty($article->image))
             <div class="text-center">
                 <img
                     class="article-thumbnail"
@@ -8,6 +9,7 @@
                     alt="{{$article->title}}"
                 />
             </div>
+                @endif
         </div>
         <div class="col-12 col-xl-8">
             <div class="h-100 d-flex flex-column my-2">

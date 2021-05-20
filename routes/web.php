@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use Modules\Index\Http\Controllers\IndexController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,5 +19,5 @@ Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 });
 
-
+Route::post('/subscribe', 'IndexController@store')->name('subscribe');
 
