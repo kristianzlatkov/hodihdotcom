@@ -89,7 +89,6 @@ class BlogController extends Controller
         $data=Post::all()
             ->where('category.slug','=',$categorySlug)
             ->load(['category']);
-        dd($data);
         //check if category exists
         if(count($data->toArray())===0){
             return abort(404);
