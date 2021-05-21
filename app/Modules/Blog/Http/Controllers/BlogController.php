@@ -85,26 +85,15 @@ class BlogController extends Controller
     //Return all articles from Attractions/News/New
     public function returnAllArticles($categorySlug='attractions', Request $request)
     {
-        //get posts according to the category slug
-        $data=Post::all()
-            ->where('category.slug','=',$categorySlug)
-            ->load(['category']);
+        $data=Post::with(['category'])->whereHas('category', function ($q) use ($categorySlug) {
+            $q->where('slug', $categorySlug);
+        })->paginate(15);
+
         //check if category exists
         if(count($data->toArray())===0){
             return abort(404);
         }
-        //pagination
-        $total = count($data);
-        $per_page = 10;
-        $current_page = $request->input("page") ?? 1;
-        $starting_point = ($current_page * $per_page) - $per_page;
-        $data = $data->toArray();
-        //$array = $array->toArray();
-        $array = array_slice($data, $starting_point, $per_page, true);
-        $array = new Paginator($array, $total, $per_page, $current_page, [
-            'path' => $request->url(),
-            'query' => $request->query(),
-        ]);
+
         //SEO
         SEOTools::setTitle(ucfirst($categorySlug));
         SEOTools::opengraph();
@@ -122,7 +111,7 @@ class BlogController extends Controller
             }
         });
 
-        return view('blog::index', ['articles' => $array]);
+        return view('blog::index', ['articles' => $data]);
     }
 
     //Returns a single article according to the slug
