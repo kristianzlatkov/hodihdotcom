@@ -85,9 +85,16 @@ class BlogController extends Controller
     //Return all articles from Attractions/News/New
     public function returnAllArticles($categorySlug='attractions', Request $request)
     {
+        //get posts according to the category slug
         $data=Post::all()
             ->where('category.slug','=',$categorySlug)
             ->load(['category']);
+        dd($data);
+        //check if category exists
+        if(count($data->toArray())===0){
+            return abort(404);
+        }
+        //pagination
         $total = count($data);
         $per_page = 10;
         $current_page = $request->input("page") ?? 1;
@@ -95,11 +102,18 @@ class BlogController extends Controller
         $data = $data->toArray();
         //$array = $array->toArray();
         $array = array_slice($data, $starting_point, $per_page, true);
-
         $array = new Paginator($array, $total, $per_page, $current_page, [
             'path' => $request->url(),
             'query' => $request->query(),
         ]);
+        //SEO
+        SEOTools::setTitle(ucfirst($categorySlug));
+        SEOTools::opengraph();
+        SEOTools::opengraph()->setUrl(URL::current());
+        SEOTools::opengraph()->setSiteName($categorySlug);
+        //SEO::opengraph()->addImage(asset('assets/images/content/fb-share-img.jpg'), ['height' => 1200, 'width' => 630]);
+        SEOTools::setCanonical(URL::current());
+
         //Breadcrumbs
         Breadcrumbs::register('page', function ($breadcrumbs) use ($data) {
             $breadcrumbs->push(__('index::front.page_title'), url('/'));
@@ -108,21 +122,25 @@ class BlogController extends Controller
                 $breadcrumbs->push($data->title, \Illuminate\Support\Facades\URL::current());
             }
         });
+
         return view('blog::index', ['articles' => $array]);
     }
 
     //Returns a single article according to the slug
-    public function returnSingleArticle($categorySlug=null, $articleSlug)
+    public function returnSingleArticle($categorySlug=null, $articleSlug=null)
     {
         $article=Post::with(['category'])
             ->where('slug',$articleSlug)
             ->first();
-        SEOTools::setTitle($article->meta_title);
+        if(empty($article)){
+            return abort(404);
+        }
+        SEOTools::setTitle($article->title);
         SEOTools::setDescription($article->meta_description);
         SEOTools::metatags()->addMeta('keywords', $article->meta_keywords);
         SEOTools::opengraph();
         SEOTools::opengraph()->setUrl(URL::current());
-        SEOTools::opengraph()->setSiteName($article->meta_title);
+        SEOTools::opengraph()->setSiteName($article->title);
         //SEO::opengraph()->addImage(asset('assets/images/content/fb-share-img.jpg'), ['height' => 1200, 'width' => 630]);
         SEOTools::setCanonical(URL::current());
         //Breadcrumbs

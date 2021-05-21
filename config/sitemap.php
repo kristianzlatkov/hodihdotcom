@@ -31,7 +31,7 @@ RequestOptions::TIMEOUT => 10,
 /*
 * Describes the redirect behavior of a request.
 */
-RequestOptions::ALLOW_REDIRECTS => false,
+RequestOptions::ALLOW_REDIRECTS => true,
 ],
 
 /*

@@ -27,6 +27,6 @@ class GenerateSitemap extends Command
      */
     public function handle()
     {
-        $sitemapObject = array(SitemapGenerator::create('http://localhost.loc')->writeToFile('sitemap.xml'));
+        $sitemapObject = array(SitemapGenerator::create('http://hodihdotcom.loc')->writeToFile('sitemap.xml'));
     }
 }

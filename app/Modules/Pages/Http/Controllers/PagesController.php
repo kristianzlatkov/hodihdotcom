@@ -9,6 +9,7 @@ use Illuminate\Pagination\LengthAwarePaginator as Paginator;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
 use phpDocumentor\Reflection\DocBlock\Tags\Reference\Url;
+use Spatie\Sitemap\SitemapGenerator;
 use function PHPUnit\Framework\assertObjectNotHasAttribute;
 use Artesaos\SEOTools\Facades\SEOMeta;
 use Artesaos\SEOTools\Facades\OpenGraph;
@@ -89,11 +90,18 @@ class PagesController extends Controller
         //
     }
 
-
-
+    public static function sitemap(){
+        $sitemapObject= array(SitemapGenerator::create('https://spatie.be/en')->writeToFile('sitemap.xml'));
+        //$sitemap = SitemapGenerator::create('http://hodihdotcom.loc')->getSitemap()->getTags();
+        dd($sitemapObject);
+        return view('pages::sitemap')->with('sitemap',$sitemap);
+    }
     //prints the static pages with prefix 'pages'
     public function showStaticPage($slug)
     {
+        if($slug==='sitemap'){
+          return PagesController::sitemap();
+        }
         $page = DB::table('pages')->where('slug', '/' . $slug)->first();
         if (null === $page) {
             abort('404');
@@ -103,6 +111,15 @@ class PagesController extends Controller
             $breadcrumbs->push(__('index::front.page_title'), url('/'));
             $breadcrumbs->push($page->title, \Illuminate\Support\Facades\URL::current());
         });
+
+        SEOTools::setTitle(ucwords($slug));
+        SEOTools::setDescription($page->meta_description);
+        SEOTools::metatags()->addMeta('keywords', $page->meta_keywords);
+        SEOTools::opengraph();
+        SEOTools::opengraph()->setUrl(\Illuminate\Support\Facades\URL::current());
+        SEOTools::opengraph()->setSiteName(ucwords($slug));
+        SEOTools::opengraph()->addImage(asset('assets/images/pages'.$page->image), ['height' => 1200, 'width' => 630]);
+        SEOTools::setCanonical(\Illuminate\Support\Facades\URL::current());
         return view('pages::page', ['page' => $page]);
     }
 }

@@ -2,9 +2,12 @@
 
 namespace Modules\Gallery\Http\Controllers;
 
+use Artesaos\SEOTools\Facades\SEOTools;
+use DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Pagination\LengthAwarePaginator as Paginator;
 
@@ -61,6 +64,21 @@ class GalleryController extends Controller
             'path' => $request->url(),
             'query' => $request->query(),
         ]);
+
+        $page = DB::table('pages')->where('slug', '=' , 'gallery')->first();
+
+        Breadcrumbs::register('page', function ($breadcrumbs) use ($page) {
+            $breadcrumbs->push(__('index::front.page_title'), url('/'));
+            $breadcrumbs->push($page->title, \Illuminate\Support\Facades\URL::current());
+        });
+
+        SEOTools::setTitle($page->title);
+        SEOTools::setDescription($page->meta_description);
+        SEOTools::metatags()->addMeta('keywords', $page->meta_keywords);
+        SEOTools::opengraph();
+        SEOTools::opengraph()->setUrl(\Illuminate\Support\Facades\URL::current());
+        SEOTools::opengraph()->setSiteName($page->title);
+        SEOTools::setCanonical(\Illuminate\Support\Facades\URL::current());
 
         return view('gallery::gallery',['images'=>$array]);
 
