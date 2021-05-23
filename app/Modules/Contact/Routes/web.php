@@ -14,6 +14,6 @@
 
 Route::prefix('contact')->as('contact.')->group(function() {
     Route::get('/','ContactController@show')->name('index');
-    Route::post('/send','ContactController@returnAllArticles')->name('send');
+    Route::post('/send','ContactController@sendMessage')->name('send');
 });
 
