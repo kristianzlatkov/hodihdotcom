@@ -83,7 +83,7 @@ class BlogController extends Controller
         //
     }
     //Return all articles from Attractions/News/New
-     public static function returnAllArticles($categorySlug='attractions')
+     public static function returnAllArticles($categorySlug=null)
     {
         $data=Post::with(['category'])->whereHas('category', function ($q) use ($categorySlug) {
             $q->where('slug', $categorySlug);
