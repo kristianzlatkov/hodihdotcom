@@ -47,7 +47,6 @@ class ContactController extends Controller
     public function show()
     {
         $page = DB::table('pages')->where('slug', '=' , 'contact')->first();
-
         Breadcrumbs::register('page', function ($breadcrumbs) use ($page) {
             $breadcrumbs->push(__('index::front.page_title'), url('/'));
             $breadcrumbs->push($page->title, \Illuminate\Support\Facades\URL::current());
@@ -59,7 +58,7 @@ class ContactController extends Controller
         SEOTools::opengraph()->setUrl(\Illuminate\Support\Facades\URL::current());
         SEOTools::opengraph()->setSiteName($page->title);
         SEOTools::setCanonical(\Illuminate\Support\Facades\URL::current());
-        return view('contact::contact');
+        return view('contact::index');
     }
 
     /**
@@ -93,4 +92,8 @@ class ContactController extends Controller
         //
     }
 
+    public function sendMessage($name,$lastName,$email,$message){
+
+
+    }
 }

@@ -12,4 +12,8 @@
 */
 
 
-Route::get('/contact','ContactController@show');
+Route::prefix('contact')->as('contact.')->group(function() {
+    Route::get('/','ContactController@show')->name('index');
+    Route::post('/send','ContactController@returnAllArticles')->name('send');
+});
+
