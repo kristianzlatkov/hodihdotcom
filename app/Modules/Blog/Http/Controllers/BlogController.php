@@ -83,7 +83,7 @@ class BlogController extends Controller
         //
     }
     //Return all articles from Attractions/News/New
-    public function returnAllArticles($categorySlug='attractions', Request $request)
+     public static function returnAllArticles($categorySlug='attractions')
     {
         $data=Post::with(['category'])->whereHas('category', function ($q) use ($categorySlug) {
             $q->where('slug', $categorySlug);
@@ -110,7 +110,6 @@ class BlogController extends Controller
                 $breadcrumbs->push($data->title, \Illuminate\Support\Facades\URL::current());
             }
         });
-
         return view('blog::index', ['articles' => $data]);
     }
 

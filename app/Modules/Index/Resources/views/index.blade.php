@@ -25,7 +25,7 @@
                 <h2 class="section-title">@lang('front.attractions')</h2>
             </div>
 
-            @if($articles->isNotEmpty())
+            @if(!empty($articles))
                 <div class="swiper-container">
                     <div class="swiper-wrapper">
                         @foreach($articles as $article)

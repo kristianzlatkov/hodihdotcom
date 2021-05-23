@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use Modules\Blog\Http\Controllers\BlogController;
 use Spatie\Newsletter\NewsletterFacade as Newsletter;
 use Modules\Gallery\Http\Controllers\GalleryController;
 
@@ -20,8 +21,7 @@ class IndexController extends Controller
     public function index()
     {
         SEOMeta::setTitle('Home');
-        //getting articles from the DB
-        $articles = DB::table('posts')->where('featured','0')->orderBy('id','desc')->take(4)->get();
+        $articles=BlogController::returnAllArticles('attraction');
         //getting gallery photos from Gallery storage into a collection so we can use the "take" method
         $array = collect(Storage::disk('public')->files('gallery'));
         $images=$array->take(5);
