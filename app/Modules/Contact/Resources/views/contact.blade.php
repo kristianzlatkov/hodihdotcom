@@ -10,16 +10,16 @@
                         <input type="text" class="form-control" placeholder="@lang('contact::front.first_name')">
                     </div>
                     <div class="form-group col-12 col-md-4">
-                        <input type="text" class="form-control" placeholder="@lang('contact::front.email')">
+                        <input type="email" class="form-control" placeholder="@lang('contact::front.last_name')">
                     </div>
                     <div class="form-group col-12 col-md-4">
-                        <input type="email" class="form-control" placeholder="@lang('contact::front.last_name')">
+                        <input type="text" class="form-control" placeholder="@lang('contact::front.email')">
                     </div>
                     <div class="form-group col-12">
                         <textarea
                             class="form-control"
                             placeholder="@lang('contact::front.message')"
-                            rows="5"
+                            rows="7"
                         ></textarea>
                     </div>
                     <div class="form-group col-12 text-end">
