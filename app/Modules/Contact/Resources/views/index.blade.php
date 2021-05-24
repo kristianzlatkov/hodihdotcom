@@ -5,6 +5,7 @@
         <h1 class="page-title">@lang('contact::front.page_title')</h1>
         <div class="mt-3">
             <form method="post" action="{{route('contact.send')}}">
+                {{csrf_field()}}
                 <div class="row g-3">
                     <div class="form-group col-12 col-md-4">
                         <input type="text" name="first_name" class="form-control" placeholder="@lang('contact::front.first_name')" required>
