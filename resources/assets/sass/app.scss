@@ -13,6 +13,7 @@
 @import "~swiper/swiper";
 @import "vendors/swiperjs";
 @import "~lightgallery.js/src/sass/lightgallery";
+@import "~toastr/toastr";
 
 //Themes
 
@@ -33,3 +34,4 @@
 @import "components/button";
 @import "components/page-title";
 @import "components/breadcrumb";
+@import "components/messages";

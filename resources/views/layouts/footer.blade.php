@@ -10,7 +10,7 @@
                 </div>
             </div>
             <div class="col-12 col-md-6 col-lg-4">
-                <form id="subscribe" method="post" {{--action="{{route('subscribe')}}"--}}>
+                <form id="subscribe" method="post" {{--action="{{route('subscribe')}}"--}} class="form-validate">
                     {{csrf_field()}}
                     <div class="form-group">
                         <label for="newsletterEmail">@lang('front.newsletter')</label><br>
@@ -21,6 +21,7 @@
                             class="form-control my-2"
                             id="newsletterEmail"
                             placeholder="@lang('front.newsletter_input_placeholder')"
+                            required
                         />
                     </div>
                     <button class="btn btn-primary">Абонирай се</button>

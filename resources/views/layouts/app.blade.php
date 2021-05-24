@@ -14,7 +14,7 @@
     <!-- CSS -->
     <link rel="stylesheet" href="{{asset('assets/css/app.css')}}">
 </head>
-<body>
+<body data-locale="{{ App::getLocale() }}">
 <div class="base-container">
     <div class="nav-hodih main-header nav-{{$type}}">
         {{\TCG\Voyager\Models\Menu::display('Nav', 'layouts.navigation')}}

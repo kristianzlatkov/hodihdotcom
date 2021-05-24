@@ -16,6 +16,11 @@ import {lazyLoadingInit} from "./components/lazy_loading";
 require('lightgallery.js/src/js/lightgallery');
 
 require('lightgallery.js/src/js/lg-utils');
+//Validation
+require('jquery-validation/dist/jquery.validate');
+
+import * as toastr from 'toastr';
+window.toastr = toastr;
 
 // Lazy loading
 $(document).ready(function () {
@@ -113,4 +118,15 @@ $(document).ready(function () {
             },
         });
     }
+});
+
+$(document).ready(function() {
+    $('#subscribe').validate();
+    $('#contact-us-form').validate();
+});
+
+// Set language for jquery-validation
+$(document).ready(() => {
+    const lang = $('body').data('locale');
+    require('jquery-validation/dist/localization/messages_'+lang);
 })
