@@ -8,7 +8,9 @@ use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
-
+use Modules\Contact\Entities\ContactForm;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Validator;
 class ContactController extends Controller
 {
     /**
@@ -92,8 +94,33 @@ class ContactController extends Controller
         //
     }
 
-    public function sendMessage($name,$lastName,$email,$message){
+    public function sendMessage(Request $request) {
 
+        $allSet=$request->validate([
+            'first_name' => 'required|min:2',
+            'email' => 'required|email',
+            'last_name' => 'required|min:2',
+            'message' => 'required|min:5'
+        ]);
 
+        $contact = new ContactForm();
+        $contact->name = $request->first_name;
+        $contact->email = $request->email;
+        $contact->lastName = $request->last_name;
+        $contact->message = $request->message;
+        $contact->save();
+
+        $adminEmail=setting('site.admin_email');
+        Mail::send('contact::mail.mail', ['data'=>array(
+            'name' => $request->get('first_name'),
+            'email' => $request->get('email'),
+            'lastName' => $request->get('last_name'),
+            'message' => $request->get('message'),
+        ),], function($message) use ($request,$adminEmail){
+            $message->from($request->email);
+            $message->to($adminEmail, 'Hello Admin');
+        });
+
+       return back()->with('success', 'Thanks for contacting us.');
     }
 }
