@@ -5,7 +5,11 @@
         {{ Breadcrumbs::render('blogPage') }}
 
         <h1 class="page-title">
-            @lang('pages::front.news_page_title')
+            @if(empty($category))
+                @lang('blog::front.blog_title')
+            @else
+                {{$category->title}}
+            @endif
         </h1>
 
         @if(!empty($articles))
