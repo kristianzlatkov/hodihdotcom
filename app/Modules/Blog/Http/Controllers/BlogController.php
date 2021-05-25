@@ -118,7 +118,7 @@ class BlogController extends Controller
         Breadcrumbs::register('blogPage', function ($breadcrumbs) use ($data, $categorySlug) {
             $breadcrumbs->push(__('index::front.page_title'), url('/'));
             $breadcrumbs->push(__('blog::front.blog_title'), route('blog.index'));
-            $breadcrumbs->push($data->category->name, route('blog.category',$data->category->slug));
+            $breadcrumbs->push($data['0']->category->name, route('blog.category',$data['0']->category->slug));
 
             if (!empty($data)) {
                 $breadcrumbs->push($data[0]->title, \Illuminate\Support\Facades\URL::current());
