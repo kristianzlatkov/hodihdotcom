@@ -1,15 +1,7 @@
 <div class="container-sm footer">
     <div class="footer-top">
         <div class="row">
-            <div class="col-12 col-md-6 col-lg-4">
-                <div class="logo animate__animated animate__fadeIn text-center">
-                    <a href="/" title="@lang('front.site_title')">
-                        <img class="img-fluid" src="{{asset('assets/images/logo.svg')}}"
-                             alt="@lang('front.site_title')"/>
-                    </a>
-                </div>
-            </div>
-            <div class="col-12 col-md-6 col-lg-4">
+            <div class="col-12 col-md-3 offset-md-2">
                 <form id="subscribe" method="post" {{--action="{{route('subscribe')}}"--}} class="form-validate">
                     {{csrf_field()}}
                     <div class="form-group">
@@ -27,7 +19,14 @@
                     <button class="btn btn-primary">Абонирай се</button>
                 </form>
             </div>
-            <div class="col-12 col-md-6 col-lg-4">asd</div>
+            <div class="col-12 col-md-7">
+                <div class="logo animate__animated animate__fadeIn text-center">
+                    <a href="/" title="@lang('front.site_title')">
+                        <img class="img-fluid" src="{{asset('assets/images/logo.svg')}}"
+                             alt="@lang('front.site_title')"/>
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
     <div class="footer-bottom">

@@ -28,6 +28,10 @@
         @include('layouts.footer')
     </footer>
 </div>
+<script>
+    var alertDanger = {!! json_encode($errors->all()) !!};
+    var alertSuccess = {!! json_encode(session('success', [])) !!};
+</script>
 <script src="{{asset('assets/js/app.js')}}"></script>
 </body>
 </html>

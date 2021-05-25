@@ -129,4 +129,43 @@ $(document).ready(function() {
 $(document).ready(() => {
     const lang = $('body').data('locale');
     require('jquery-validation/dist/localization/messages_'+lang);
-})
+});
+
+// Toastr
+$(document).ready(function () {
+    if (alertDanger.length > 0) {
+        toastr.options = {
+            "closeButton": true,
+            "progressBar": true,
+            "timeOut": 45000,
+            "extendedTimeOut": 20000
+        };
+        for (var e = 0; e < alertDanger.length; e++) {
+            toastr.error(alertDanger[e]);
+        }
+    }
+
+    if (
+        alertSuccess.prop &&
+        alertSuccess.prop.constructor === Array &&
+        alertSuccess.length > 0
+    ) {
+        toastr.options = {
+            "closeButton": true,
+            "progressBar": true,
+            "timeOut": 3000
+        };
+        for (var s = 0; s < alertSuccess.length; s++) {
+            toastr.success(alertSuccess[s]);
+        }
+    } else if (alertSuccess.length > 0) {
+        toastr.options = {
+            "closeButton": true,
+            "progressBar": true,
+            "timeOut": 3000
+        };
+        toastr.success(alertSuccess);
+    }
+
+    $('.form-validate').validate();
+});
