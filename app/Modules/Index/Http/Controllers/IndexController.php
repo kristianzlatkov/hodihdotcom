@@ -65,7 +65,7 @@ class IndexController extends Controller
         }
 
        // return view('index::index');
-       return redirect('/#subscribe')->with($notification);
+       return redirect('/#subscribe')->with(trans('index::front.subscribe'));
     }
 
     /**

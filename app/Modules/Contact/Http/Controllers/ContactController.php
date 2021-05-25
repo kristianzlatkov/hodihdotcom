@@ -121,6 +121,6 @@ class ContactController extends Controller
             $message->to($adminEmail, 'Hello Admin');
         });
 
-       return back()->with('success', 'Thanks for contacting us.');
+       return back()->with('success', trans('contact::front.thanks_message'));
     }
 }
