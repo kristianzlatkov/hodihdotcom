@@ -11,6 +11,10 @@ class Category extends Model
 
     protected $fillable = [];
 
+    public static function whereHas(\Closure $param)
+    {
+    }
+
     protected static function newFactory()
     {
         return \Modules\Blog\Database\factories\CategoryFactory::new();
