@@ -2,7 +2,7 @@
     <div class="footer-top">
         <div class="row">
             <div class="col-12 col-md-3 offset-md-2">
-                <form id="subscribe" method="post" {{--action="{{route('subscribe')}}"--}} class="form-validate">
+                <form id="subscribe" method="post" action="{{route('subscribe')}}" class="form-validate">
                     {{csrf_field()}}
                     <div class="form-group">
                         <label for="newsletterEmail">@lang('front.newsletter')</label><br>
