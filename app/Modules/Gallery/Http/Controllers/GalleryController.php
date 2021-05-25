@@ -67,7 +67,7 @@ class GalleryController extends Controller
 
         $page = DB::table('pages')->where('slug', '=' , 'gallery')->first();
 
-        Breadcrumbs::register('page', function ($breadcrumbs) use ($page) {
+        Breadcrumbs::register('gallery', function ($breadcrumbs) use ($page) {
             $breadcrumbs->push(__('index::front.page_title'), url('/'));
             $breadcrumbs->push($page->title, \Illuminate\Support\Facades\URL::current());
         });
