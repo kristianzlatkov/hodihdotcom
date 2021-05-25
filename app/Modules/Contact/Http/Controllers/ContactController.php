@@ -49,7 +49,7 @@ class ContactController extends Controller
     public function show()
     {
         $page = DB::table('pages')->where('slug', '=' , 'contact')->first();
-        Breadcrumbs::register('page', function ($breadcrumbs) use ($page) {
+        Breadcrumbs::register('contact', function ($breadcrumbs) use ($page) {
             $breadcrumbs->push(__('index::front.page_title'), url('/'));
             $breadcrumbs->push($page->title, \Illuminate\Support\Facades\URL::current());
         });

@@ -82,15 +82,16 @@ class BlogController extends Controller
     {
         //
     }
+
     //Return all articles from Attractions/News/New
-     public static function returnAllArticles($categorySlug=null)
+    public static function returnAllArticles($categorySlug = null)
     {
-        $data=Post::with(['category'])->whereHas('category', function ($q) use ($categorySlug) {
+        $data = Post::with(['category'])->whereHas('category', function ($q) use ($categorySlug) {
             $q->where('slug', $categorySlug);
         })->paginate(15);
 
         //check if category exists
-        if(count($data->toArray())===0){
+        if (count($data->toArray()) === 0) {
             return abort(404);
         }
 
@@ -103,23 +104,24 @@ class BlogController extends Controller
         SEOTools::setCanonical(URL::current());
 
         //Breadcrumbs
-        Breadcrumbs::register('page', function ($breadcrumbs) use ($data) {
+        Breadcrumbs::register('blogPage', function ($breadcrumbs) use ($data, $categorySlug) {
             $breadcrumbs->push(__('index::front.page_title'), url('/'));
-            $breadcrumbs->push(__('pages::front.blog_title'),route('blog'));
-            if(!empty($data)){
-                $breadcrumbs->push($data->title, \Illuminate\Support\Facades\URL::current());
+            $breadcrumbs->push(__('blog::front.blog_title'), route('blog.index'));
+
+            if (!empty($data)) {
+                $breadcrumbs->push($data[0]->title, \Illuminate\Support\Facades\URL::current());
             }
         });
         return view('blog::index', ['articles' => $data]);
     }
 
     //Returns a single article according to the slug
-    public function returnSingleArticle($categorySlug=null, $articleSlug=null)
+    public function returnSingleArticle($categorySlug = null, $articleSlug = null)
     {
-        $article=Post::with(['category'])
-            ->where('slug',$articleSlug)
+        $article = Post::with(['category'])
+            ->where('slug', $articleSlug)
             ->first();
-        if(empty($article)){
+        if (empty($article)) {
             return abort(404);
         }
         SEOTools::setTitle($article->title);
@@ -133,7 +135,7 @@ class BlogController extends Controller
         //Breadcrumbs
         Breadcrumbs::register('post', function ($breadcrumbs) use ($article) {
             $breadcrumbs->push(__('index::front.page_title'), url('/'));
-            $breadcrumbs->push(__('blog::front.page_title'),route('blog.index'));
+            $breadcrumbs->push(__('blog::front.page_title'), route('blog.index'));
             $breadcrumbs->push($article->category->name, \Illuminate\Support\Facades\URL::current());
             $breadcrumbs->push($article->title, \Illuminate\Support\Facades\URL::current());
         });

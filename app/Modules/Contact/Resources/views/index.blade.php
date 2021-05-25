@@ -2,6 +2,7 @@
 
 @section('content')
     <div class="container-sm">
+        {{ Breadcrumbs::render('contact') }}
         <h1 class="page-title">@lang('contact::front.page_title')</h1>
         <div class="mt-3">
             <form

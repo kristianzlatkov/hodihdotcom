@@ -2,6 +2,8 @@
 
 @section('content')
     <div class="container-sm">
+        {{ Breadcrumbs::render('blogPage') }}
+
         <h1 class="page-title">
             @lang('pages::front.news_page_title')
         </h1>
