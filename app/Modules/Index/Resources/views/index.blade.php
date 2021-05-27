@@ -87,7 +87,6 @@
 
     <section class="container-sm">
         <div id="map" class="mt-4">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d47803.2092546156!2d24.684734!3d41.510763!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14ac5acd8fddf361%3A0xa00a014cd0e74c0!2zNDc3OCDQmtC-0YjQvdC40YbQsA!5e0!3m2!1sbg!2sbg!4v1622142451966!5m2!1sbg!2sbg" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-        </div>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m21!1m12!1m3!1d1330.8173711349218!2d24.666132991489107!3d41.51329103805531!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m6!3e0!4m0!4m3!3m2!1d41.512979699999995!2d24.666548799999997!5e0!3m2!1sbg!2sbg!4v1622143274667!5m2!1sbg!2sbg" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>        </div>
     </section>
 @endsection
