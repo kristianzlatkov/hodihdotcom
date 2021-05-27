@@ -84,4 +84,7 @@
             <div class="swiper-pagination"></div>
         </div>
     </section>
+
+    <section id="map" class="mt-4">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d47803.2092546156!2d24.684734!3d41.510763!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14ac5acd8fddf361%3A0xa00a014cd0e74c0!2zNDc3OCDQmtC-0YjQvdC40YbQsA!5e0!3m2!1sbg!2sbg!4v1622142451966!5m2!1sbg!2sbg" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>    </section>
 @endsection
