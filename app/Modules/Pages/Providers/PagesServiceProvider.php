@@ -28,6 +28,7 @@ class PagesServiceProvider extends ServiceProvider
         $this->registerConfig();
         $this->registerViews();
         $this->loadMigrationsFrom(module_path($this->moduleName, 'Database/Migrations'));
+        $this->loadViewsFrom(app_path('Modules\Pages\Resources\views'), 'pages');
     }
 
     /**

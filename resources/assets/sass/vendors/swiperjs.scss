@@ -1,0 +1,28 @@
+.swiper-slide {
+    width: 100%;
+    height: 100%;
+    margin: 18px 0;
+}
+
+.swiper-gallery-container {
+    overflow-x: hidden;
+}
+
+.swiper-pagination {
+    height: 24px;
+    display: flex;
+    justify-content: center;
+
+    .swiper-pagination-bullet {
+        background-color: rgba($tertiary-background, .6);
+        height: 15px;
+        width: 15px;
+        margin-right: 8px;
+        border-radius: 50%;
+        display: block;
+
+        &.swiper-pagination-bullet-active {
+            background-color: rgba($secondary-background, .6);
+        }
+    }
+}

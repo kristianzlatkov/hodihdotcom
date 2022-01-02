@@ -52,7 +52,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://localhost'),
+    'url' => env('APP_URL', 'http://hodihdotcom.loc'),
 
     'asset_url' => env('ASSET_URL', null),
 
@@ -80,7 +80,7 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => 'bg',
 
     /*
     |--------------------------------------------------------------------------
@@ -162,7 +162,8 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
-
+        Artesaos\SEOTools\Providers\SEOToolsServiceProvider::class,
+        Spatie\Newsletter\NewsletterServiceProvider::class,
         /*
          * Package Service Providers...
          */
@@ -175,7 +176,10 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-
+        Modules\Index\Providers\RouteServiceProvider::class,
+        Modules\Pages\Providers\RouteServiceProvider::class,
+        Modules\Index\Providers\IndexServiceProvider::class,
+        Modules\Pages\Providers\PagesServiceProvider::class
     ],
 
     /*
@@ -227,7 +231,6 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-
+        'SEO' => Artesaos\SEOTools\Facades\SEOTools::class,
     ],
-
 ];

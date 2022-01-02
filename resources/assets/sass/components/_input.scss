@@ -1,0 +1,9 @@
+.form-control {
+    border-color: $primary-background;
+    color: rgba($primary-background ,.6);
+
+    &:focus {
+        border-color: $secondary-text-color;
+        box-shadow: 0px 0px 1px 2px rgba($secondary-text-color,.4);
+    }
+}

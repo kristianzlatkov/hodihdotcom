@@ -1,0 +1,15 @@
+.footer {
+    margin-top: 48px;
+    color: $secondary-text-color;
+
+    .footer-top {
+        padding-top: 48px;
+        padding-bottom: 16px;
+    }
+
+    .footer-bottom {
+        border-top: 1px solid $secondary-text-color;
+        padding: 12px 0;
+        text-align: center;
+    }
+}

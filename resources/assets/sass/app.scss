@@ -1,0 +1,38 @@
+//Abstracts
+@import 'abstracts/variables';
+
+//Vendors
+@import "~bootstrap/scss/bootstrap";
+@import "~aos/src/sass/aos";
+@import "~animate.css/animate.css";
+@import "~@fortawesome/fontawesome-free/scss/fontawesome";
+@import "~@fortawesome/fontawesome-free/scss/solid";
+@import "~@fortawesome/fontawesome-free/scss/regular";
+@import "~@fortawesome/fontawesome-free/scss/brands";
+@import "~hamburgers/_sass/hamburgers/hamburgers";
+@import "~swiper/swiper";
+@import "vendors/swiperjs";
+@import "~lightgallery.js/src/sass/lightgallery";
+@import "~toastr/toastr";
+
+//Themes
+
+//Base
+@import 'base/reset';
+@import 'base/typograpthy';
+
+//Layout
+@import "layout/index";
+@import "layout/navigation";
+@import "layout/footer";
+
+//Components
+@import "components/article-list";
+@import "components/photo-list";
+@import "components/input";
+@import "components/pagination";
+@import "components/button";
+@import "components/page-title";
+@import "components/breadcrumb";
+@import "components/messages";
+@import "components/map";

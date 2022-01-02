@@ -1,0 +1,9 @@
+.btn-primary {
+    background-color: $tertiary-background;
+    border-color: $tertiary-background;
+
+    &:hover {
+        background-color: darken($tertiary-background, 20);
+        border-color: darken($tertiary-background, 20);
+    }
+}

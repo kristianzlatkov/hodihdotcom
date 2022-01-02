@@ -11,6 +11,6 @@
 |
 */
 
-Route::prefix('pages')->group(function() {
-    Route::get('/', 'PagesController@index');
+Route::prefix('/pages')->as('pages')->group(function() {
+    Route::get('/{slug}','PagesController@showStaticPage');
 });

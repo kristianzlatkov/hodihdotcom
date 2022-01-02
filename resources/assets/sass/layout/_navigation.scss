@@ -1,0 +1,167 @@
+.nav-hodih {
+    &.nav-home {
+        .navbar {
+            position: absolute;
+            top: 0;
+        }
+    }
+
+    .navbar {
+        z-index: $primary-z-index;
+        width: 100%;
+        height: 75px;
+        font-weight: bold;
+    }
+
+    .navbar-collapse {
+        .navbar-nav {
+            margin: auto;
+
+            .nav-item {
+                position: relative;
+
+                .nav-link {
+                    color: $secondary-text-color;
+
+                    &.dropdown-toggle {
+                        i {
+                            padding: 0;
+                            font-size: 12px;
+                            transition: transform $primary-transition ease;
+                        }
+
+                        &.show {
+                            i {
+                                transform: rotate(180deg);
+                            }
+                        }
+
+                        span {
+                            padding-right: 6px;
+                        }
+
+                        &::after {
+                            display: none;
+                        }
+                    }
+                }
+
+                .dropdown-menu {
+                    font-weight: normal;
+                    background-color: darken($secondary-background, 12);
+                    animation-duration: $primary-transition;
+
+                    .nav-link {
+                        color: $primary-text-color;
+                        transition: background-color $primary-transition ease;
+
+                        &:hover {
+                            background-color: darken($secondary-background, 18);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    @media(min-width: 992px) {
+        .navbar-collapse {
+            .navbar-nav {
+                .nav-item {
+                    border-radius: $primary-border-radius;
+                    transition: background-color $primary-transition ease;
+
+                    &.active, &:hover {
+                        background-color: rgba($secondary-background, .1);
+                    }
+                }
+            }
+        }
+    }
+
+    @media(max-width: 992px) {
+        .navbar-collapse {
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: $secondary-background;
+            overflow-y: auto;
+
+            &.show {
+                display: block;
+            }
+
+            .navbar-nav {
+                margin-top: 75px;
+
+                .nav-item {
+                    border-bottom: 1px solid rgba($primary-text-color, .05);
+
+                    .nav-link {
+                        transition: background-color $primary-transition ease;
+                        display: block;
+                        padding: 12px 8px;
+
+                        &:active {
+                            background-color: rgba($primary-text-color, .05);
+                        }
+
+                        &.dropdown-toggle {
+                            display: flex;
+                            align-items: center;
+
+                            span {
+                                flex-grow: 1;
+                            }
+                        }
+                    }
+
+                    &:last-child {
+                        border-bottom: none;
+                    }
+
+                    .dropdown-menu {
+                        margin: 0;
+                        background-color: rgba($primary-text-color, .05);
+                        border: none;
+                        padding: 8px;
+                        transition: background-color $primary-transition ease;
+
+                        .nav-link {
+                            color: $secondary-text-color;
+                            font-weight: bold;
+
+                            &:active {
+                                background-color: rgba($primary-text-color, .1);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .navbar-toggler {
+        z-index: 2;
+        font-size: 18px;
+        margin-left: auto;
+
+        .hamburger-box {
+            .hamburger-inner {
+                background-color: $secondary-text-color;
+
+                &:before, &:after {
+                    background-color: $secondary-text-color;
+                }
+            }
+        }
+
+        &:active, &:focus {
+            border: 0;
+            outline: none;
+            box-shadow: none;
+        }
+    }
+}

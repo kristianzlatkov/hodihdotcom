@@ -1,0 +1,21 @@
+.article-list-box {
+    color: $secondary-text-color;
+    border-bottom: 2px solid $secondary-text-color;
+    padding: 16px 0;
+    width: 100%;
+
+    .article-thumbnail {
+        @extend .img-fluid;
+
+        max-height: 175px;
+    }
+
+    .article-title {
+        font-weight: bold;
+    }
+
+    .article-list-box-content {
+        height: 4.5em;
+        overflow-y: hidden;
+    }
+}

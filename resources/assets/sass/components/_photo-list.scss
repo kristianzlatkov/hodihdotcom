@@ -1,0 +1,16 @@
+.photo-list-box {
+    height: 200px;
+    width: 100%;
+    text-align: center;
+    display: block;
+    transition: transform $primary-transition ease;
+
+    img {
+        max-height: 100%;
+        max-width: 100%;
+    }
+
+    &:hover {
+        transform: scale(1.1);
+    }
+}
